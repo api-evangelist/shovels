@@ -1,0 +1,436 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shovels Contractor Intelligence"
+  description: >-
+    Workflow capability for identifying qualified contractors, researching their
+    work history, accessing decision maker contacts, and analyzing market activity.
+    Combines permit search, contractor search, employee lookup, and geographic
+    metrics into a unified contractor sales and marketing intelligence workflow.
+    Primary users: materials suppliers, construction tech companies, home services
+    firms, and energy/climate companies targeting contractors.
+  tags:
+    - Construction
+    - Contractors
+    - Building Permits
+    - Sales Intelligence
+    - Market Analytics
+    - Lead Generation
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SHOVELS_API_KEY: SHOVELS_API_KEY
+
+capability:
+  consumes:
+    - import: shovels
+      location: ./shared/shovels.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: shovels-contractor-intelligence-api
+      description: "Unified REST API for contractor intelligence and permit market analytics."
+      resources:
+        - path: /v1/contractors
+          name: contractors
+          description: Search and retrieve qualified contractor profiles
+          operations:
+            - method: GET
+              name: search-contractors
+              description: Search contractors by geography, specialty, and quality metrics
+              call: "shovels.search-contractors"
+              with:
+                geo_id: "rest.geo_id"
+                permit_from: "rest.permit_from"
+                permit_to: "rest.permit_to"
+                tags: "rest.tags"
+                min_inspection_pass_rate: "rest.min_inspection_pass_rate"
+                size: "rest.size"
+                cursor: "rest.cursor"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/contractors/{id}
+          name: contractor-detail
+          description: Full contractor profile with metrics
+          operations:
+            - method: GET
+              name: get-contractor
+              description: Get detailed contractor profile by ID
+              call: "shovels.get-contractor-by-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/contractors/{id}/permits
+          name: contractor-permits
+          description: All permits associated with a contractor
+          operations:
+            - method: GET
+              name: get-contractor-permits
+              description: Retrieve permit history for a contractor
+              call: "shovels.get-contractor-permits"
+              with:
+                id: "rest.id"
+                cursor: "rest.cursor"
+                size: "rest.size"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/contractors/{id}/employees
+          name: contractor-employees
+          description: Decision makers and employees at a contractor company
+          operations:
+            - method: GET
+              name: get-contractor-employees
+              description: Get employee contact list for a contractor
+              call: "shovels.get-contractor-employees"
+              with:
+                id: "rest.id"
+                cursor: "rest.cursor"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/contractors/{id}/metrics
+          name: contractor-metrics
+          description: Performance metrics for a contractor
+          operations:
+            - method: GET
+              name: get-contractor-metrics
+              description: Get permit performance metrics for a contractor
+              call: "shovels.get-contractor-metrics"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/permits
+          name: permits
+          description: Building permit search for market research
+          operations:
+            - method: GET
+              name: search-permits
+              description: Search building permits by geography, type, and date range
+              call: "shovels.search-permits"
+              with:
+                geo_id: "rest.geo_id"
+                permit_from: "rest.permit_from"
+                permit_to: "rest.permit_to"
+                tags: "rest.tags"
+                property_type: "rest.property_type"
+                status: "rest.status"
+                min_job_value: "rest.min_job_value"
+                size: "rest.size"
+                cursor: "rest.cursor"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/permits/{id}
+          name: permit-detail
+          description: Individual permit details
+          operations:
+            - method: GET
+              name: get-permit
+              description: Get a specific permit by ID
+              call: "shovels.get-permit-by-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/addresses
+          name: addresses
+          description: Address search and lookup
+          operations:
+            - method: GET
+              name: search-addresses
+              description: Search addresses that have associated permits
+              call: "shovels.search-addresses"
+              with:
+                q: "rest.q"
+                cursor: "rest.cursor"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/addresses/{geo_id}/residents
+          name: address-residents
+          description: Residents at a permit address
+          operations:
+            - method: GET
+              name: get-residents
+              description: Get resident contact information for an address
+              call: "shovels.get-address-residents"
+              with:
+                geo_id: "rest.geo_id"
+                cursor: "rest.cursor"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market/{geo_id}/metrics
+          name: market-metrics
+          description: Market activity metrics for a geography
+          operations:
+            - method: GET
+              name: get-address-metrics
+              description: Get current permit activity metrics for a geographic area
+              call: "shovels.get-address-metrics-current"
+              with:
+                geo_id: "rest.geo_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/geography/cities
+          name: cities
+          description: City lookup for geo_id resolution
+          operations:
+            - method: GET
+              name: search-cities
+              description: Search for cities to get geo_id values
+              call: "shovels.search-cities"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/geography/states
+          name: states
+          description: State lookup for geo_id resolution
+          operations:
+            - method: GET
+              name: search-states
+              description: Search for US states to get geo_id values
+              call: "shovels.search-states"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tags
+          name: permit-tags
+          description: Available permit classification tags
+          operations:
+            - method: GET
+              name: get-tags
+              description: Get all available permit type tags for filtering
+              call: "shovels.get-tags"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: shovels-contractor-intelligence-mcp
+      transport: http
+      description: "MCP server for AI-assisted contractor research and permit market intelligence."
+      tools:
+        - name: search-contractors
+          description: >-
+            Search for licensed contractors in a geographic area filtered by specialty,
+            date range, and quality metrics like inspection pass rate. Returns contractor
+            profiles with contact information and permit statistics.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shovels.search-contractors"
+          with:
+            geo_id: "tools.geo_id"
+            permit_from: "tools.permit_from"
+            permit_to: "tools.permit_to"
+            tags: "tools.tags"
+            min_inspection_pass_rate: "tools.min_inspection_pass_rate"
+            size: "tools.size"
+            cursor: "tools.cursor"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-contractor
+          description: >-
+            Get detailed profile for a specific contractor by ID, including business
+            details, contact information, license, classification, and permit statistics.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-contractor-by-id"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-contractor-permits
+          description: >-
+            Retrieve the complete permit history for a contractor, showing all
+            projects undertaken, job values, locations, and permit statuses.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-contractor-permits"
+          with:
+            id: "tools.id"
+            cursor: "tools.cursor"
+            size: "tools.size"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-contractor-employees
+          description: >-
+            Get the list of employees and decision makers at a contractor company,
+            including names, titles, phone numbers, and email addresses for sales outreach.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-contractor-employees"
+          with:
+            id: "tools.id"
+            cursor: "tools.cursor"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-contractor-metrics
+          description: >-
+            Get performance metrics for a contractor including inspection pass rate,
+            average job value, total job value, and active permit count.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-contractor-metrics"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-permits
+          description: >-
+            Search building permits by geography and date range. Filter by permit type
+            (tags), property type, status, and job value range to identify market
+            opportunities and active construction activity.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shovels.search-permits"
+          with:
+            geo_id: "tools.geo_id"
+            permit_from: "tools.permit_from"
+            permit_to: "tools.permit_to"
+            tags: "tools.tags"
+            property_type: "tools.property_type"
+            status: "tools.status"
+            min_job_value: "tools.min_job_value"
+            size: "tools.size"
+            cursor: "tools.cursor"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-permit
+          description: Get details for a specific building permit by ID.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-permit-by-id"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-addresses
+          description: >-
+            Search for US property addresses that have at least one associated permit.
+            Returns address records with geo_id values needed for metric queries.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shovels.search-addresses"
+          with:
+            q: "tools.q"
+            cursor: "tools.cursor"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-address-residents
+          description: >-
+            Get resident contact information for a specific address, useful for
+            homeowner outreach related to nearby permit activity.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-address-residents"
+          with:
+            geo_id: "tools.geo_id"
+            cursor: "tools.cursor"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-market-metrics
+          description: >-
+            Get current permit activity metrics for a geographic area including
+            permit count, active permits, average job value, and contractor count.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-address-metrics-current"
+          with:
+            geo_id: "tools.geo_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-cities
+          description: Search for city names to resolve geo_id values for use in permit and contractor searches.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shovels.search-cities"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-states
+          description: Search for US states to resolve geo_id values.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shovels.search-states"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-permit-tags
+          description: >-
+            Get all available permit classification tags (solar, roofing, hvac, electrical,
+            plumbing, adu, etc.) for use as filter values in permit and contractor searches.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "shovels.get-tags"
+          outputParameters:
+            - type: array
+              mapping: "$."

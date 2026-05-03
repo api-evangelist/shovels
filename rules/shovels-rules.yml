@@ -1,0 +1,98 @@
+extends: spectral:oas
+rules:
+  shovels-operation-tags:
+    description: All operations must have at least one tag
+    message: "Operation '{{property}}' must have at least one tag"
+    given: "$.paths[*][*]"
+    severity: error
+    then:
+      field: tags
+      function: truthy
+
+  shovels-operation-summary:
+    description: All operations must have a summary in Title Case
+    message: "Operation must have a summary"
+    given: "$.paths[*][*]"
+    severity: error
+    then:
+      field: summary
+      function: truthy
+
+  shovels-api-key-auth:
+    description: API must use X-API-Key header authentication
+    message: "Security scheme must be apiKey in header named X-API-Key"
+    given: "$.components.securitySchemes[*]"
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            type:
+              enum: [apiKey]
+            in:
+              enum: [header]
+            name:
+              enum: [X-API-Key]
+
+  shovels-geo-id-parameter:
+    description: Geographic search endpoints must include geo_id parameter
+    message: "Search endpoints for geographic data should document geo_id parameter"
+    given: "$.paths[*].get.parameters[?(@.name == 'geo_id')]"
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  shovels-cursor-pagination:
+    description: List endpoints should support cursor-based pagination
+    message: "List endpoints should have cursor pagination parameter"
+    given: "$.paths[*].get.parameters[?(@.name == 'cursor')]"
+    severity: warn
+    then:
+      field: schema
+      function: truthy
+
+  shovels-date-format:
+    description: Date parameters must use YYYY-MM-DD format
+    message: "Date parameters must specify format: date"
+    given: "$.paths[*].get.parameters[?(@.schema.format == 'date')]"
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  shovels-response-200:
+    description: All GET operations must have a 200 response
+    message: "GET operation must define a 200 response"
+    given: "$.paths[*].get.responses"
+    severity: error
+    then:
+      field: "200"
+      function: truthy
+
+  shovels-response-422:
+    description: Operations with required parameters should document 422 validation errors
+    message: "Operations should document 422 validation error responses"
+    given: "$.paths[*].get.responses"
+    severity: warn
+    then:
+      field: "422"
+      function: defined
+
+  shovels-items-schema:
+    description: List response schemas should have items array property
+    message: "List response must include items array"
+    given: "$.components.schemas[*Response]"
+    severity: error
+    then:
+      field: properties.items
+      function: truthy
+
+  shovels-geo-id-field:
+    description: Geographic schemas should include geo_id field
+    message: "Geographic schemas should include geo_id identifier field"
+    given: "$.components.schemas[*]"
+    severity: warn
+    then:
+      function: defined

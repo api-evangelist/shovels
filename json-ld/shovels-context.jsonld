@@ -1,0 +1,85 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "shovels": "https://api.shovels.ai/v2/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Permit": "shovels:Permit",
+    "Contractor": "shovels:Contractor",
+    "Address": "schema:PostalAddress",
+    "Employee": "schema:Person",
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "email": "schema:email",
+    "phone": "schema:telephone",
+    "website": "schema:url",
+    "address": "schema:address",
+    "latitude": "schema:latitude",
+    "longitude": "schema:longitude",
+
+    "status": {
+      "@id": "shovels:status",
+      "@type": "@vocab"
+    },
+    "issue_date": {
+      "@id": "shovels:issueDate",
+      "@type": "xsd:date"
+    },
+    "final_date": {
+      "@id": "shovels:finalDate",
+      "@type": "xsd:date"
+    },
+    "job_value": {
+      "@id": "shovels:jobValue",
+      "@type": "xsd:decimal"
+    },
+    "tags": {
+      "@id": "shovels:tags",
+      "@container": "@set"
+    },
+    "property_type": {
+      "@id": "shovels:propertyType",
+      "@type": "@vocab"
+    },
+    "contractor_id": {
+      "@id": "shovels:contractorId",
+      "@type": "xsd:string"
+    },
+    "jurisdiction": {
+      "@id": "shovels:jurisdiction",
+      "@type": "xsd:string"
+    },
+    "license": {
+      "@id": "shovels:licenseNumber",
+      "@type": "xsd:string"
+    },
+    "classification": {
+      "@id": "shovels:classification",
+      "@type": "@vocab"
+    },
+    "inspection_pass_rate": {
+      "@id": "shovels:inspectionPassRate",
+      "@type": "xsd:decimal"
+    },
+    "permit_count": {
+      "@id": "shovels:permitCount",
+      "@type": "xsd:integer"
+    },
+    "geo_id": {
+      "@id": "shovels:geoId",
+      "@type": "xsd:string"
+    },
+    "street_no": "schema:streetAddress",
+    "street": "schema:streetAddress",
+    "city": "schema:addressLocality",
+    "county": "schema:addressRegion",
+    "state": "schema:addressRegion",
+    "zip_code": "schema:postalCode",
+    "next_cursor": "shovels:nextCursor",
+    "size": "shovels:pageSize",
+    "items": "shovels:items"
+  }
+}

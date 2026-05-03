@@ -1,0 +1,409 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shovels API"
+  description: >-
+    Building permit intelligence and contractor data from 1,800+ US jurisdictions.
+    Provides access to 130M+ permits, 2.3M+ contractor profiles, address metrics,
+    resident data, and geographic market analytics.
+  tags:
+    - Construction
+    - Building Permits
+    - Contractors
+    - Real Estate
+    - Property Data
+    - Market Intelligence
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SHOVELS_API_KEY: SHOVELS_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: shovels
+      baseUri: https://api.shovels.ai/v2
+      description: "Shovels building permit and contractor intelligence API"
+      authentication:
+        type: apikey
+        key: X-API-Key
+        value: "{{SHOVELS_API_KEY}}"
+        placement: header
+      resources:
+        - name: permits
+          path: /permits
+          description: Building permit records from US jurisdictions
+          operations:
+            - name: search-permits
+              method: GET
+              description: Search permits by geography and date range
+              inputParameters:
+                - name: geo_id
+                  in: query
+                  type: string
+                  required: true
+                  description: Geographic location identifier
+                - name: permit_from
+                  in: query
+                  type: string
+                  required: true
+                  description: Start date filter (YYYY-MM-DD)
+                - name: permit_to
+                  in: query
+                  type: string
+                  required: true
+                  description: End date filter (YYYY-MM-DD)
+                - name: tags
+                  in: query
+                  type: string
+                  required: false
+                  description: Permit type tags filter
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: Permit status filter
+                - name: property_type
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type filter
+                - name: min_job_value
+                  in: query
+                  type: number
+                  required: false
+                  description: Minimum job value filter
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page (max 100)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-permit-by-id
+              method: GET
+              description: Get a specific permit by ID
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Unique permit identifier
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: contractors
+          path: /contractors
+          description: Licensed contractor profiles and work history
+          operations:
+            - name: search-contractors
+              method: GET
+              description: Search contractors by geography, specialty, and performance
+              inputParameters:
+                - name: geo_id
+                  in: query
+                  type: string
+                  required: true
+                  description: Geographic location identifier
+                - name: permit_from
+                  in: query
+                  type: string
+                  required: true
+                  description: Permit date range start (YYYY-MM-DD)
+                - name: permit_to
+                  in: query
+                  type: string
+                  required: true
+                  description: Permit date range end (YYYY-MM-DD)
+                - name: tags
+                  in: query
+                  type: string
+                  required: false
+                  description: Contractor specialty tags
+                - name: name
+                  in: query
+                  type: string
+                  required: false
+                  description: Contractor name filter
+                - name: min_inspection_pass_rate
+                  in: query
+                  type: number
+                  required: false
+                  description: Minimum inspection pass rate (0-1)
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page (max 100)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-contractor-by-id
+              method: GET
+              description: Get detailed contractor profile by ID
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Unique contractor identifier
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-contractor-permits
+              method: GET
+              description: Get all permits associated with a contractor
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Contractor ID
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-contractor-employees
+              method: GET
+              description: Get employees and decision makers for a contractor
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Contractor ID
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-contractor-metrics
+              method: GET
+              description: Get performance metrics for a contractor
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Contractor ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: addresses
+          path: /addresses
+          description: Address search and property metrics
+          operations:
+            - name: search-addresses
+              method: GET
+              description: Search addresses with associated permits
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: Address search text
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-address-metrics-current
+              method: GET
+              description: Get current permit metrics for an address
+              inputParameters:
+                - name: geo_id
+                  in: path
+                  type: string
+                  required: true
+                  description: Address geo_id
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-address-residents
+              method: GET
+              description: Get resident information for an address
+              inputParameters:
+                - name: geo_id
+                  in: path
+                  type: string
+                  required: true
+                  description: Address geo_id
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: geography
+          path: /cities
+          description: Geographic search endpoints for cities, counties, jurisdictions, states
+          operations:
+            - name: search-cities
+              method: GET
+              description: Search for cities by name
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: City name search term
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: search-counties
+              method: GET
+              description: Search for counties by name
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: County name search term
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: search-states
+              method: GET
+              description: Search for US states by name
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: State name search term
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: search-jurisdictions
+              method: GET
+              description: Search for permit jurisdictions by name
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: true
+                  description: Jurisdiction name search term
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: lists
+          path: /tags
+          description: Reference data for filter values
+          operations:
+            - name: get-tags
+              method: GET
+              description: Get all available permit classification tags
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: shovels-rest
+      resources:
+        - path: /v1/permits
+          name: permits
+          description: Permit search
+          operations:
+            - method: GET
+              name: search-permits
+              description: Search building permits
+              call: "shovels.search-permits"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contractors
+          name: contractors
+          description: Contractor search
+          operations:
+            - method: GET
+              name: search-contractors
+              description: Search contractors
+              call: "shovels.search-contractors"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: shovels-mcp
+      transport: http
+      tools:
+        - name: search-permits
+          description: Search building permits by geography and date range
+          call: "shovels.search-permits"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-contractors
+          description: Search contractors by geography and specialty
+          call: "shovels.search-contractors"
+          outputParameters:
+            - type: object
+              mapping: "$."

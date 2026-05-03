@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.shovels.ai/schemas/contractor",
+  "title": "Shovels Contractor",
+  "description": "A contractor profile from the Shovels API representing a licensed professional undertaking permitted construction projects.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Shovels contractor identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Contractor or business name"
+    },
+    "license": {
+      "type": "string",
+      "description": "State-issued contractor license number"
+    },
+    "classification": {
+      "type": "string",
+      "description": "Contractor classification type (e.g., General, Electrical, Plumbing, HVAC)"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Primary contact phone number"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary contact email address"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Business website URL"
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "inspection_pass_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "AI-calculated ratio of inspections passed across all permits (0-1)"
+    },
+    "permit_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of permits associated with this contractor"
+    },
+    "active_permits": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of currently active permits"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Contractor specialty tags derived from permit work types"
+    },
+    "avg_job_value": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Average job value in US dollars across all permits"
+    },
+    "total_job_value": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total cumulative job value in US dollars"
+    },
+    "employees": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Employee"
+      },
+      "description": "Key employees and decision makers"
+    }
+  },
+  "required": ["id", "name"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street_no": { "type": "string" },
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "county": { "type": "string" },
+        "state": { "type": "string" },
+        "zip_code": { "type": "string" },
+        "geo_id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "Employee": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    }
+  }
+}

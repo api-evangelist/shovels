@@ -1,0 +1,89 @@
+{
+  "title": "Search Permits Example",
+  "description": "Example request and response for searching residential roofing permits in Austin, TX",
+  "request": {
+    "method": "GET",
+    "url": "https://api.shovels.ai/v2/permits/search",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY_HERE"
+    },
+    "queryParameters": {
+      "geo_id": "TX-Austin",
+      "permit_from": "2026-01-01",
+      "permit_to": "2026-05-01",
+      "tags": "roofing",
+      "property_type": "residential",
+      "status": "issued",
+      "size": "10",
+      "include_count": "true"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Credits-Request": "10",
+      "X-Credits-Remaining": "980"
+    },
+    "body": {
+      "items": [
+        {
+          "id": "prm_austin_2026_001234",
+          "status": "issued",
+          "issue_date": "2026-03-15",
+          "final_date": null,
+          "description": "Residential roof replacement - remove existing shingles, install new architectural shingles",
+          "job_value": 12500.00,
+          "tags": ["roofing"],
+          "property_type": "residential",
+          "address": {
+            "street_no": "1502",
+            "street": "South Lamar Blvd",
+            "city": "Austin",
+            "county": "Travis",
+            "state": "TX",
+            "zip_code": "78704",
+            "jurisdiction": "City of Austin",
+            "latitude": 30.2548,
+            "longitude": -97.7703,
+            "geo_id": "TX-Austin-1502-SLamar",
+            "name": "1502 South Lamar Blvd, Austin, TX 78704"
+          },
+          "contractor_id": "cnt_texas_roofers_789",
+          "jurisdiction": "City of Austin"
+        },
+        {
+          "id": "prm_austin_2026_001235",
+          "status": "issued",
+          "issue_date": "2026-03-16",
+          "final_date": null,
+          "description": "Re-roofing residential dwelling with Class 4 impact-resistant shingles",
+          "job_value": 18900.00,
+          "tags": ["roofing"],
+          "property_type": "residential",
+          "address": {
+            "street_no": "4501",
+            "street": "Burnet Rd",
+            "city": "Austin",
+            "county": "Travis",
+            "state": "TX",
+            "zip_code": "78756",
+            "jurisdiction": "City of Austin",
+            "latitude": 30.3159,
+            "longitude": -97.7367,
+            "geo_id": "TX-Austin-4501-Burnet",
+            "name": "4501 Burnet Rd, Austin, TX 78756"
+          },
+          "contractor_id": "cnt_texas_roofers_456",
+          "jurisdiction": "City of Austin"
+        }
+      ],
+      "size": 2,
+      "next_cursor": "eyJpZCI6InBybV9hdXN0aW5fMjAyNl8wMDEyMzYifQ==",
+      "total_count": {
+        "value": 342,
+        "relation": "eq"
+      }
+    }
+  }
+}

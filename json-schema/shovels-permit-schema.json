@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.shovels.ai/schemas/permit",
+  "title": "Shovels Permit",
+  "description": "A building permit record from the Shovels API representing an official document issued by city or county authorities required before commencing construction or alterations.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique permit identifier assigned by Shovels"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["issued", "approved", "completed", "expired", "cancelled"],
+      "description": "Current status of the permit"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the permit was issued (YYYY-MM-DD)"
+    },
+    "final_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the permit was finalized or completed"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the permitted construction or alteration work"
+    },
+    "job_value": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated value of the permitted job in US dollars"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Permit classification tags indicating work type (e.g., solar, roofing, hvac, adu)"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": ["residential", "commercial", "industrial", "mixed"],
+      "description": "Type of property receiving the permitted work"
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "contractor_id": {
+      "type": "string",
+      "description": "Shovels ID of the associated contractor"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Name of the jurisdiction that issued the permit"
+    },
+    "inspection_pass_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Ratio of inspections passed to total inspections for this permit"
+    }
+  },
+  "required": ["id", "status"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "US address associated with the permit",
+      "properties": {
+        "street_no": {
+          "type": "string",
+          "description": "Street number"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street name"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "county": {
+          "type": "string",
+          "description": "County name"
+        },
+        "state": {
+          "type": "string",
+          "description": "Two-letter state abbreviation"
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "5-digit ZIP code"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Permit issuing jurisdiction"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Geographic latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Geographic longitude"
+        },
+        "geo_id": {
+          "type": "string",
+          "description": "Shovels unique geographic identifier for the address"
+        },
+        "name": {
+          "type": "string",
+          "description": "Formatted full address in USPS notation"
+        }
+      }
+    }
+  }
+}

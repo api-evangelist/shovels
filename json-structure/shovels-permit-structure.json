@@ -1,0 +1,94 @@
+{
+  "title": "Shovels Permit Structure",
+  "description": "JSON structure documentation for Shovels building permit objects",
+  "version": "v2",
+  "source": "https://api.shovels.ai/v2",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "description": "Unique Shovels permit identifier"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "required": true,
+      "enum": ["issued", "approved", "completed", "expired", "cancelled"],
+      "description": "Current status of the permit lifecycle"
+    },
+    {
+      "name": "issue_date",
+      "type": "string",
+      "format": "date",
+      "description": "Date the permit was issued in YYYY-MM-DD format"
+    },
+    {
+      "name": "final_date",
+      "type": "string",
+      "format": "date",
+      "description": "Date the permit was finalized or closed"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Free-text description of the permitted construction work"
+    },
+    {
+      "name": "job_value",
+      "type": "number",
+      "description": "Estimated dollar value of the permitted job"
+    },
+    {
+      "name": "tags",
+      "type": "array",
+      "items": "string",
+      "description": "Standardized permit classification tags (solar, roofing, hvac, adu, electrical, plumbing, etc.)"
+    },
+    {
+      "name": "property_type",
+      "type": "string",
+      "enum": ["residential", "commercial", "industrial", "mixed"],
+      "description": "Property classification"
+    },
+    {
+      "name": "address",
+      "type": "object",
+      "description": "Property address where work is permitted",
+      "fields": [
+        { "name": "street_no", "type": "string", "description": "Street number" },
+        { "name": "street", "type": "string", "description": "Street name" },
+        { "name": "city", "type": "string", "description": "City name" },
+        { "name": "county", "type": "string", "description": "County name" },
+        { "name": "state", "type": "string", "description": "Two-letter state code" },
+        { "name": "zip_code", "type": "string", "description": "5-digit ZIP code" },
+        { "name": "jurisdiction", "type": "string", "description": "Permit jurisdiction name" },
+        { "name": "latitude", "type": "number", "description": "Decimal degrees latitude" },
+        { "name": "longitude", "type": "number", "description": "Decimal degrees longitude" },
+        { "name": "geo_id", "type": "string", "description": "Shovels geographic identifier" },
+        { "name": "name", "type": "string", "description": "Full formatted USPS address" }
+      ]
+    },
+    {
+      "name": "contractor_id",
+      "type": "string",
+      "description": "Associated Shovels contractor ID"
+    },
+    {
+      "name": "jurisdiction",
+      "type": "string",
+      "description": "Name of the jurisdiction that issued the permit"
+    }
+  ],
+  "pagination": {
+    "type": "cursor",
+    "fields": {
+      "next_cursor": "Opaque token for requesting the next page of results",
+      "size": "Number of items in the current response page",
+      "total_count": {
+        "value": "Count of matching records (capped at 10,000)",
+        "relation": "Whether value is exact (eq) or lower bound (gte)"
+      }
+    }
+  }
+}

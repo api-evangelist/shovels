@@ -1,0 +1,173 @@
+title: Shovels Vocabulary
+description: >-
+  Domain vocabulary for the Shovels building permit intelligence platform.
+  Covers construction industry terminology, permit lifecycle concepts, contractor
+  classifications, and geographic data structures used in the Shovels API.
+version: '1.0'
+source: https://api.shovels.ai/v2
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: Building Permit
+    definition: >-
+      An official document issued by a city or county authority granting
+      permission to commence construction, alteration, renovation, or
+      demolition work on a property.
+    tags:
+      - Core
+      - Regulatory
+
+  - term: Permit Status
+    definition: >-
+      The current lifecycle stage of a building permit. Values include: issued
+      (permit authorized), approved (application accepted), completed
+      (work finalized and inspected), expired (permit time limit exceeded),
+      cancelled (permit revoked).
+    values:
+      - issued
+      - approved
+      - completed
+      - expired
+      - cancelled
+    tags:
+      - Core
+
+  - term: Job Value
+    definition: >-
+      The estimated dollar value of construction work covered by a permit,
+      as reported by the permit applicant or determined by the jurisdiction.
+    tags:
+      - Financial
+      - Permits
+
+  - term: Permit Tags
+    definition: >-
+      Standardized classification labels applied to permits to indicate the
+      type of work performed. Used as filter criteria in API searches.
+    examples:
+      - solar
+      - roofing
+      - hvac
+      - electrical
+      - plumbing
+      - adu
+      - battery-storage
+      - pool
+      - foundation
+      - demolition
+    tags:
+      - Classification
+
+  - term: Contractor
+    definition: >-
+      A licensed professional or business entity that undertakes permitted
+      construction projects. Identified by license number, state classification,
+      and permit history.
+    tags:
+      - Core
+
+  - term: Inspection Pass Rate
+    definition: >-
+      An AI-calculated metric representing the ratio of inspections passed
+      to total inspections across all permits associated with a contractor.
+      Range 0-1. Higher values indicate better quality work.
+    tags:
+      - Metrics
+      - Quality
+
+  - term: Geo ID
+    definition: >-
+      Shovels' unique geographic identifier for a location (address, city,
+      county, jurisdiction, zip code, or state). Used as a required filter
+      parameter to scope geographic queries.
+    tags:
+      - Geography
+
+  - term: Cursor Pagination
+    definition: >-
+      The Shovels API uses cursor-based pagination where each response includes
+      a next_cursor token that can be passed to retrieve the next page of
+      results. Returns null when no more pages exist.
+    tags:
+      - API Design
+
+  - term: Credit
+    definition: >-
+      The unit of API consumption in the Shovels billing model. Each record
+      returned in an API response costs one credit. Usage is tracked via
+      X-Credits-Request and X-Credits-Remaining response headers.
+    tags:
+      - Billing
+
+  - term: Jurisdiction
+    definition: >-
+      The governmental entity (typically a city, county, or special district)
+      that has authority to issue building permits and conduct inspections in
+      a geographic area. Shovels covers 1,800+ US jurisdictions.
+    tags:
+      - Geography
+      - Regulatory
+
+  - term: Property Type
+    definition: >-
+      Classification of the property type receiving permitted construction work.
+    values:
+      - residential
+      - commercial
+      - industrial
+      - mixed
+    tags:
+      - Classification
+
+  - term: Resident
+    definition: >-
+      An individual living at a permitted address. The Shovels API can return
+      resident contact information for outreach purposes.
+    tags:
+      - Data Types
+
+  - term: Market Analytics
+    definition: >-
+      Aggregated permit and contractor metrics for geographic areas (city,
+      county, jurisdiction, zip code) providing market intelligence for
+      construction activity, contractor concentration, and job values.
+    tags:
+      - Analytics
+
+  - term: Data Release
+    definition: >-
+      Shovels updates its database on the 1st and 15th of each month,
+      adding 5-10 million new permit records and 1-5 million status updates
+      per release cycle.
+    tags:
+      - Data Currency
+
+categories:
+  - name: Core Entities
+    terms:
+      - Building Permit
+      - Contractor
+      - Resident
+  - name: Search & Filtering
+    terms:
+      - Permit Tags
+      - Property Type
+      - Permit Status
+      - Geo ID
+  - name: Metrics & Analytics
+    terms:
+      - Inspection Pass Rate
+      - Job Value
+      - Market Analytics
+  - name: API Mechanics
+    terms:
+      - Cursor Pagination
+      - Credit
+  - name: Geography
+    terms:
+      - Geo ID
+      - Jurisdiction
+  - name: Data Currency
+    terms:
+      - Data Release

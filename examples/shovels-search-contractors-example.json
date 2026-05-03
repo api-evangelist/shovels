@@ -1,0 +1,86 @@
+{
+  "title": "Search Contractors Example",
+  "description": "Example request and response for searching contractors in San Francisco, CA who have done solar work in the past year",
+  "request": {
+    "method": "GET",
+    "url": "https://api.shovels.ai/v2/contractors/search",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY_HERE"
+    },
+    "queryParameters": {
+      "geo_id": "CA-San Francisco",
+      "permit_from": "2025-05-01",
+      "permit_to": "2026-05-01",
+      "tags": "solar",
+      "size": "10"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Credits-Request": "10",
+      "X-Credits-Remaining": "490"
+    },
+    "body": {
+      "items": [
+        {
+          "id": "cnt_abc123xyz",
+          "name": "SunPower Installations LLC",
+          "license": "CA-LIC-987654",
+          "classification": "General",
+          "phone": "+14155550123",
+          "email": "info@sunpowerinstallations.com",
+          "website": "https://www.sunpowerinstallations.com",
+          "address": {
+            "street_no": "450",
+            "street": "Market St",
+            "city": "San Francisco",
+            "county": "San Francisco",
+            "state": "CA",
+            "zip_code": "94105",
+            "geo_id": "CA-San Francisco-450-Market",
+            "name": "450 Market St, San Francisco, CA 94105"
+          },
+          "inspection_pass_rate": 0.94,
+          "permit_count": 127,
+          "active_permits": 8,
+          "tags": ["solar", "electrical", "roofing"],
+          "avg_job_value": 32500.00,
+          "total_job_value": 4127500.00
+        },
+        {
+          "id": "cnt_def456uvw",
+          "name": "Bay Area Solar Experts Inc",
+          "license": "CA-LIC-543210",
+          "classification": "Electrical",
+          "phone": "+14155550456",
+          "email": "contact@bayareasolar.com",
+          "website": "https://www.bayareasolar.com",
+          "address": {
+            "street_no": "2100",
+            "street": "Mission St",
+            "city": "San Francisco",
+            "county": "San Francisco",
+            "state": "CA",
+            "zip_code": "94110",
+            "geo_id": "CA-San Francisco-2100-Mission",
+            "name": "2100 Mission St, San Francisco, CA 94110"
+          },
+          "inspection_pass_rate": 0.97,
+          "permit_count": 89,
+          "active_permits": 12,
+          "tags": ["solar", "electrical", "battery-storage"],
+          "avg_job_value": 28750.00,
+          "total_job_value": 2558750.00
+        }
+      ],
+      "size": 2,
+      "next_cursor": "eyJpZCI6ImNudF9naGk3ODlwcXIifQ==",
+      "total_count": {
+        "value": 47,
+        "relation": "eq"
+      }
+    }
+  }
+}
