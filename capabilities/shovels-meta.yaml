@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shovels API — Meta
+  description: 'Shovels API — Meta. 2 operations. Lead operation: Get Data Release Date. Self-contained Naftiko capability
+    covering one Shovels business surface.'
+  tags:
+  - Shovels
+  - Meta
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOVELS_API_KEY: SHOVELS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shovels-meta
+    baseUri: https://api.shovels.ai/v2
+    description: Shovels API — Meta business capability. Self-contained, no shared references.
+    resources:
+    - name: meta-release-date
+      path: /meta/release-date
+      operations:
+      - name: getmetareleasedate
+        method: GET
+        description: Get Data Release Date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: usage
+      path: /usage
+      operations:
+      - name: getusage
+        method: GET
+        description: Get Usage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SHOVELS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: shovels-meta-rest
+    port: 8080
+    description: REST adapter for Shovels API — Meta. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/meta/release-date
+      name: meta-release-date
+      description: REST surface for meta-release-date.
+      operations:
+      - method: GET
+        name: getmetareleasedate
+        description: Get Data Release Date
+        call: shovels-meta.getmetareleasedate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/usage
+      name: usage
+      description: REST surface for usage.
+      operations:
+      - method: GET
+        name: getusage
+        description: Get Usage
+        call: shovels-meta.getusage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shovels-meta-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shovels API — Meta. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-data-release-date
+      description: Get Data Release Date
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shovels-meta.getmetareleasedate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-usage
+      description: Get Usage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shovels-meta.getusage
+      outputParameters:
+      - type: object
+        mapping: $.
