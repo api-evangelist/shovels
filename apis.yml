@@ -21,6 +21,8 @@ specificationVersion: '0.19'
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/shovels
+- type: LLMsTxt
+  url: https://docs.shovels.ai/llms.txt
 apis:
 - aid: shovels:shovels-api
   name: Shovels API
