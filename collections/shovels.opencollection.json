@@ -1,0 +1,663 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shovels API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Permits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/permits/search",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "query",
+                "description": "Location filter (address, city, zip code, county, jurisdiction, or state geo_id)"
+              },
+              {
+                "name": "permit_from",
+                "value": "",
+                "type": "query",
+                "description": "Return permits issued on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "permit_to",
+                "value": "",
+                "type": "query",
+                "description": "Return permits issued on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit status (issued, approved, completed, expired, cancelled)"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit tags (comma-separated list)"
+              },
+              {
+                "name": "min_job_value",
+                "value": "",
+                "type": "query",
+                "description": "Minimum job value in dollars"
+              },
+              {
+                "name": "max_job_value",
+                "value": "",
+                "type": "query",
+                "description": "Maximum job value in dollars"
+              },
+              {
+                "name": "property_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property type (residential, commercial, industrial)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for next page"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              },
+              {
+                "name": "include_count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response (capped at 10,000)"
+              }
+            ]
+          },
+          "docs": "Returns a list of matching permit records based on geographic location and date range filters. Supports advanced filtering by permit status, tags, job value, property type, building area, and more."
+        },
+        {
+          "info": {
+            "name": "Get Permit By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/permits/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique permit ID"
+              }
+            ]
+          },
+          "docs": "Retrieves specific permit records by their unique IDs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contractors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Contractors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/search",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "query",
+                "description": "Location filter for the search area"
+              },
+              {
+                "name": "permit_from",
+                "value": "",
+                "type": "query",
+                "description": "Return permits that started on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "permit_to",
+                "value": "",
+                "type": "query",
+                "description": "Return permits that started on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contractor name"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit tags (contractor specialties)"
+              },
+              {
+                "name": "classification",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contractor classification"
+              },
+              {
+                "name": "min_inspection_pass_rate",
+                "value": "",
+                "type": "query",
+                "description": "Minimum inspection pass rate (0-1)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              },
+              {
+                "name": "include_count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response"
+              }
+            ]
+          },
+          "docs": "Returns contractors doing work within the given location area. Supports filtering by permit date range, specialty, license type, inspection pass rate, and more. Useful for identifying qualified contractors and understanding their work history."
+        },
+        {
+          "info": {
+            "name": "Get Contractor By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed contractor information by unique ID, including business details, contact information, license data, and permit statistics."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Permits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/permits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieves all permits associated with a specific contractor."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/employees",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of employees for a specific contractor, including contact information for decision makers."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/metrics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              }
+            ]
+          },
+          "docs": "Returns filtered performance metrics for a specific contractor."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/addresses/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for in address fields"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              }
+            ]
+          },
+          "docs": "Searches for addresses that have at least one associated permit. Results are ordered by relevance and in USPS notation."
+        },
+        {
+          "info": {
+            "name": "Get Address Metrics Current",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/addresses/:geo_id/metrics/current",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "Address geo_id"
+              }
+            ]
+          },
+          "docs": "Returns current metrics for a specific address."
+        },
+        {
+          "info": {
+            "name": "Get Address Metrics Monthly",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/addresses/:geo_id/metrics/monthly",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "Address geo_id"
+              }
+            ]
+          },
+          "docs": "Returns monthly metrics for a specific address."
+        },
+        {
+          "info": {
+            "name": "Get Address Residents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/addresses/:geo_id/residents",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "Address geo_id"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieves resident information for a given address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geography",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "City name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for cities by name to retrieve geo_id values for use in other API calls."
+        },
+        {
+          "info": {
+            "name": "Get City By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/:geo_id",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "City geo_id"
+              }
+            ]
+          },
+          "docs": "Returns city details and location hierarchy."
+        },
+        {
+          "info": {
+            "name": "Get City Metrics Current",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/:geo_id/metrics/current",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "City geo_id"
+              }
+            ]
+          },
+          "docs": "Returns current permit activity metrics for a city."
+        },
+        {
+          "info": {
+            "name": "Search Counties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/counties/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "County name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for counties by name."
+        },
+        {
+          "info": {
+            "name": "Search Jurisdictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/jurisdictions/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Jurisdiction name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for building permit jurisdictions by name."
+        },
+        {
+          "info": {
+            "name": "Search States",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/states/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "State name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              }
+            ]
+          },
+          "docs": "Searches for US states based on the provided search term."
+        },
+        {
+          "info": {
+            "name": "Search Zipcodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/zipcodes/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Zip code search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for US zip codes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Available Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/tags"
+          },
+          "docs": "Returns all available permit tags for use as filter values in permit and contractor searches."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Data Release Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/meta/release-date"
+          },
+          "docs": "Returns the date of the current data release."
+        },
+        {
+          "info": {
+            "name": "Get Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/usage"
+          },
+          "docs": "Get current credit usage for the rolling 30-day period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2754 @@
+{
+  "item": [
+    {
+      "id": "5465fed3-47e6-4155-8004-65056ed4e4e7",
+      "name": "Permits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d35e874-5c1d-4e37-a20b-7a46e731e1fa",
+          "name": "Search Permits",
+          "request": {
+            "name": "Search Permits",
+            "description": {
+              "content": "Returns a list of matching permit records based on geographic location and date range filters. Supports advanced filtering by permit status, tags, job value, property type, building area, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permits",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geo_id",
+                  "value": "<string>",
+                  "description": "(Required) Location filter (address, city, zip code, county, jurisdiction, or state geo_id)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_from",
+                  "value": "<date>",
+                  "description": "(Required) Return permits issued on or after this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_to",
+                  "value": "<date>",
+                  "description": "(Required) Return permits issued on or before this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by permit status (issued, approved, completed, expired, cancelled)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by permit tags (comma-separated list)"
+                },
+                {
+                  "disabled": false,
+                  "key": "min_job_value",
+                  "value": "<number>",
+                  "description": "Minimum job value in dollars"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_job_value",
+                  "value": "<number>",
+                  "description": "Maximum job value in dollars"
+                },
+                {
+                  "disabled": false,
+                  "key": "property_type",
+                  "value": "<string>",
+                  "description": "Filter by property type (residential, commercial, industrial)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_count",
+                  "value": "<boolean>",
+                  "description": "Include total count in response (capped at 10,000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2b81118-11a6-4d2a-8aad-e284bae04417",
+              "name": "List of permits matching the search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "property_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1947-12-15\",\n      \"final_date\": \"2007-03-09\",\n      \"description\": \"string\",\n      \"job_value\": 7374.380671997095,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 377.36596745912897,\n        \"longitude\": 5956.7936635110345,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1979-08-03\",\n      \"final_date\": \"2014-07-15\",\n      \"description\": \"string\",\n      \"job_value\": 343.0169462129284,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 7597.13348880933,\n        \"longitude\": 3473.3521356793253,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    }\n  ],\n  \"size\": 7053,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 9970,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e149d01b-59e8-4db3-bb85-5cedeab7f28a",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "property_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc3a8a96-ce47-4e10-8891-a23ad9415563",
+          "name": "Get Permit By ID",
+          "request": {
+            "name": "Get Permit By ID",
+            "description": {
+              "content": "Retrieves specific permit records by their unique IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permits",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique permit ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25cca5da-bd86-4a0a-b642-57c53128f9ea",
+              "name": "Permit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"issue_date\": \"1998-12-15\",\n  \"final_date\": \"1999-10-23\",\n  \"description\": \"string\",\n  \"job_value\": 1514.881353380133,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"property_type\": \"string\",\n  \"address\": {\n    \"street_no\": \"string\",\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"county\": \"string\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"jurisdiction\": \"string\",\n    \"latitude\": 1317.225804235389,\n    \"longitude\": 7113.795664781789,\n    \"geo_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"contractor_id\": \"string\",\n  \"jurisdiction\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4b40481-c744-48a4-8bf1-336c6b6d9cda",
+              "name": "Permit not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85d34ec0-f022-4718-93b6-97262e278a00",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f70a091a-b958-4c12-9810-6a60d0876555",
+      "name": "Contractors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8539d16f-dd7c-4230-91de-48e227cdfda1",
+          "name": "Search Contractors",
+          "request": {
+            "name": "Search Contractors",
+            "description": {
+              "content": "Returns contractors doing work within the given location area. Supports filtering by permit date range, specialty, license type, inspection pass rate, and more. Useful for identifying qualified contractors and understanding their work history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geo_id",
+                  "value": "<string>",
+                  "description": "(Required) Location filter for the search area"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_from",
+                  "value": "<date>",
+                  "description": "(Required) Return permits that started on or after this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_to",
+                  "value": "<date>",
+                  "description": "(Required) Return permits that started on or before this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by contractor name"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by permit tags (contractor specialties)"
+                },
+                {
+                  "disabled": false,
+                  "key": "classification",
+                  "value": "<string>",
+                  "description": "Filter by contractor classification"
+                },
+                {
+                  "disabled": false,
+                  "key": "min_inspection_pass_rate",
+                  "value": "<number>",
+                  "description": "Minimum inspection pass rate (0-1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_count",
+                  "value": "<boolean>",
+                  "description": "Include total count in response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f734e5b6-7273-46c4-9bf8-9dbecfd6d1db",
+              "name": "List of contractors matching the search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_inspection_pass_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"license\": \"string\",\n      \"classification\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"xmEgZjkyIAmCsiR@QEKOYgjOogoGOWtQMzG.qtbn\",\n      \"website\": \"http://cae.zxiWOy0gFwJjmel\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 1012.371053297273,\n        \"longitude\": 2667.63950965198,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"inspection_pass_rate\": 2683.8456513361107,\n      \"permit_count\": 9663,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"license\": \"string\",\n      \"classification\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"h6Jc-jG@giRvfrxc.mra\",\n      \"website\": \"http://febBNJSdzYPameXYePuwvorGHrz.ybohiKJ,GjSfYdLd4IIYrJaPsGvRphrHvm6A4da9bqUN52FtfxeOv8XV+UZ9kaOvybFvXCGH89ESjbOzmEPdt7cI\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 2033.4643434719158,\n        \"longitude\": 2683.4987140212243,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"inspection_pass_rate\": 8847.911994233496,\n      \"permit_count\": 6839,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"size\": 8926,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 5193,\n    \"relation\": \"gte\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c03ac23-1e15-4592-9963-729b07ebc9bd",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_inspection_pass_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0010367d-361b-4e3e-afa1-5658a7788c2d",
+          "name": "Get Contractor By ID",
+          "request": {
+            "name": "Get Contractor By ID",
+            "description": {
+              "content": "Retrieves detailed contractor information by unique ID, including business details, contact information, license data, and permit statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3aee9098-bf4b-46da-b2ef-44a913119b67",
+              "name": "Contractor details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"license\": \"string\",\n  \"classification\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"xmBCDHKCs4smWC@nAKFgjCvMpMTkHyGIGRAnRQJOZvlk.grqa\",\n  \"website\": \"https://UTNmYGUwbPIQoAZRlJhmLfrdnx.myy2YgOxGNeZ4Fuy3AfYENGoN4bO768X536R83VeSsmbEJNTL.de\",\n  \"address\": {\n    \"street_no\": \"string\",\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"county\": \"string\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"jurisdiction\": \"string\",\n    \"latitude\": 9442.75847393686,\n    \"longitude\": 3269.9002191717786,\n    \"geo_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"inspection_pass_rate\": 582.5812881704051,\n  \"permit_count\": 485,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70b92da5-b553-40bd-a41a-21a91f0fff32",
+              "name": "Contractor not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b74f8761-97a0-4a04-b9b5-38a5a0500680",
+          "name": "Get Contractor Permits",
+          "request": {
+            "name": "Get Contractor Permits",
+            "description": {
+              "content": "Retrieves all permits associated with a specific contractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "permits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88c2f1b9-f23c-494f-8466-8298ab8a32dc",
+              "name": "List of permits for the contractor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "permits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1947-12-15\",\n      \"final_date\": \"2007-03-09\",\n      \"description\": \"string\",\n      \"job_value\": 7374.380671997095,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 377.36596745912897,\n        \"longitude\": 5956.7936635110345,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1979-08-03\",\n      \"final_date\": \"2014-07-15\",\n      \"description\": \"string\",\n      \"job_value\": 343.0169462129284,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 7597.13348880933,\n        \"longitude\": 3473.3521356793253,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    }\n  ],\n  \"size\": 7053,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 9970,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b04537b7-c733-4dc1-aa14-8c14c7f5f938",
+          "name": "Get Contractor Employees",
+          "request": {
+            "name": "Get Contractor Employees",
+            "description": {
+              "content": "Returns a paginated list of employees for a specific contractor, including contact information for decision makers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "559a1b37-1dca-4b0d-acf5-6e6fd5a5d345",
+              "name": "List of contractor employees",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"3pTsmmjt@ZsTDaFGYse.ln\",\n      \"contractor_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"9TzlpN2aI5sYf@RFtx.xqo\",\n      \"contractor_id\": \"string\"\n    }\n  ],\n  \"size\": 8947,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed3a8f41-28c7-412b-9c21-53a519dbabdc",
+          "name": "Get Contractor Metrics",
+          "request": {
+            "name": "Get Contractor Metrics",
+            "description": {
+              "content": "Returns filtered performance metrics for a specific contractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "911bc891-c487-4812-9455-e01e2b733309",
+              "name": "Contractor metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contractor_id\": \"string\",\n  \"permit_count\": 9328,\n  \"inspection_pass_rate\": 5816.294212006356,\n  \"avg_job_value\": 7769.472672503922,\n  \"total_job_value\": 4857.407386875308,\n  \"active_permits\": 9052\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d8399100-78dc-44a5-a9e6-5e4e8233a67a",
+      "name": "Addresses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f412f7fe-f89f-40f7-a5c7-af67f3788d18",
+          "name": "Search Addresses",
+          "request": {
+            "name": "Search Addresses",
+            "description": {
+              "content": "Searches for addresses that have at least one associated permit. Results are ordered by relevance and in USPS notation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The text to search for in address fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95624132-ed2a-40c9-8fc7-a9286a8576a6",
+              "name": "List of matching addresses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"street_no\": \"string\",\n      \"street\": \"string\",\n      \"city\": \"string\",\n      \"county\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"jurisdiction\": \"string\",\n      \"latitude\": 6661.8151118214055,\n      \"longitude\": 5967.7102390726,\n      \"geo_id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"street_no\": \"string\",\n      \"street\": \"string\",\n      \"city\": \"string\",\n      \"county\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"jurisdiction\": \"string\",\n      \"latitude\": 4903.041487943424,\n      \"longitude\": 3403.6584949612748,\n      \"geo_id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"size\": 7455,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 2176,\n    \"relation\": \"gte\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1443c8e7-d18f-470f-9cb5-6a8ab4039dbf",
+          "name": "Get Address Metrics Current",
+          "request": {
+            "name": "Get Address Metrics Current",
+            "description": {
+              "content": "Returns current metrics for a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "metrics",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0480470e-2ec9-424d-939f-db9e3fe4abb8",
+              "name": "Current address metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "metrics",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geo_id\": \"string\",\n  \"permit_count\": 8135,\n  \"active_permits\": 609,\n  \"avg_job_value\": 3542.54371096792,\n  \"total_job_value\": 3051.7782373237114,\n  \"period\": \"1993-11-13\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6b419fe-b826-4fe2-bbef-833debe67d5b",
+          "name": "Get Address Metrics Monthly",
+          "request": {
+            "name": "Get Address Metrics Monthly",
+            "description": {
+              "content": "Returns monthly metrics for a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "metrics",
+                "monthly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f3127da-5dc1-435c-85d0-b84403b3c9a6",
+              "name": "Monthly address metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "metrics",
+                    "monthly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"geo_id\": \"string\",\n    \"permit_count\": 2920,\n    \"active_permits\": 9811,\n    \"avg_job_value\": 8900.123083288494,\n    \"total_job_value\": 9036.769849946912,\n    \"period\": \"1947-03-17\"\n  },\n  {\n    \"geo_id\": \"string\",\n    \"permit_count\": 2487,\n    \"active_permits\": 3169,\n    \"avg_job_value\": 5486.3864591540005,\n    \"total_job_value\": 6323.672084082682,\n    \"period\": \"1952-03-17\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de06ae10-7ec9-4d0f-a101-600bcced8470",
+          "name": "Get Address Residents",
+          "request": {
+            "name": "Get Address Residents",
+            "description": {
+              "content": "Retrieves resident information for a given address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "residents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "748c0222-3370-4cd9-9ce5-eca354c91764",
+              "name": "List of residents at the address",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "residents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 3930.371107309668,\n        \"longitude\": 7089.927582747873,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 7647.482187124251,\n        \"longitude\": 9609.770106815175,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"size\": 5167,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c5aa3e1e-d7cc-42a3-9335-02f81140d4ab",
+      "name": "Geography",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ad5c301-031f-4d58-8ecc-6df930c1f92b",
+          "name": "Search Cities",
+          "request": {
+            "name": "Search Cities",
+            "description": {
+              "content": "Searches for cities by name to retrieve geo_id values for use in other API calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cities",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) City name search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "325fefd3-a609-420c-93e3-7194473c617e",
+              "name": "List of matching cities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 2540.444097039204,\n      \"longitude\": 4571.042298816985\n    },\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 1267.810103367132,\n      \"longitude\": 5218.873430057496\n    }\n  ],\n  \"size\": 3364,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 4035,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99caa7cd-25e1-4b29-bed8-60d53b0ee703",
+          "name": "Get City By ID",
+          "request": {
+            "name": "Get City By ID",
+            "description": {
+              "content": "Returns city details and location hierarchy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cities",
+                ":geo_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) City geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a28f001-3dbb-411f-836c-c38968d93359",
+              "name": "City details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities",
+                    ":geo_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) City geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geo_id\": \"string\",\n  \"name\": \"string\",\n  \"state\": \"string\",\n  \"county\": \"string\",\n  \"latitude\": 7543.346926767756,\n  \"longitude\": 1044.0601612971068\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1953d9a8-f265-45f6-aeee-b7bffe2ddc4d",
+          "name": "Get City Metrics Current",
+          "request": {
+            "name": "Get City Metrics Current",
+            "description": {
+              "content": "Returns current permit activity metrics for a city.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cities",
+                ":geo_id",
+                "metrics",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) City geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f1c03ba-8328-4925-a969-9ed7de3673ba",
+              "name": "Current city metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cities",
+                    ":geo_id",
+                    "metrics",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) City geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geo_id\": \"string\",\n  \"permit_count\": 4091,\n  \"active_permits\": 2312,\n  \"avg_job_value\": 3031.8303964033944,\n  \"contractor_count\": 5595,\n  \"period\": \"1984-11-20\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3dde55a-564b-41da-8118-adc00ad2c5c1",
+          "name": "Search Counties",
+          "request": {
+            "name": "Search Counties",
+            "description": {
+              "content": "Searches for counties by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "counties",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) County name search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "837a55de-5ad3-43f0-a351-e779e044eb59",
+              "name": "List of matching counties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "counties",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 2540.444097039204,\n      \"longitude\": 4571.042298816985\n    },\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 1267.810103367132,\n      \"longitude\": 5218.873430057496\n    }\n  ],\n  \"size\": 3364,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 4035,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4da82f5-05f8-457b-b405-8ea9e75b4a7f",
+          "name": "Search Jurisdictions",
+          "request": {
+            "name": "Search Jurisdictions",
+            "description": {
+              "content": "Searches for building permit jurisdictions by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jurisdictions",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Jurisdiction name search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c131c97-ca96-476a-8b63-99da90467722",
+              "name": "List of matching jurisdictions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 2540.444097039204,\n      \"longitude\": 4571.042298816985\n    },\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 1267.810103367132,\n      \"longitude\": 5218.873430057496\n    }\n  ],\n  \"size\": 3364,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 4035,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feba6338-8077-4042-aef9-1c6fb5d518cb",
+          "name": "Search States",
+          "request": {
+            "name": "Search States",
+            "description": {
+              "content": "Searches for US states based on the provided search term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "states",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) State name search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cea15d3-e556-41cc-83b5-04a99236da7a",
+              "name": "List of matching states",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 2540.444097039204,\n      \"longitude\": 4571.042298816985\n    },\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 1267.810103367132,\n      \"longitude\": 5218.873430057496\n    }\n  ],\n  \"size\": 3364,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 4035,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d9f6b57-6c0d-4ba0-9b2c-c0fdf959dd61",
+          "name": "Search Zipcodes",
+          "request": {
+            "name": "Search Zipcodes",
+            "description": {
+              "content": "Searches for US zip codes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "zipcodes",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Zip code search term"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b6f4ddb-0787-474f-aaf9-c23ccfcd5a85",
+              "name": "List of matching zip codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zipcodes",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 2540.444097039204,\n      \"longitude\": 4571.042298816985\n    },\n    {\n      \"geo_id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"latitude\": 1267.810103367132,\n      \"longitude\": 5218.873430057496\n    }\n  ],\n  \"size\": 3364,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 4035,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "20dbdfb4-fcd3-4333-ba61-5347fa33f727",
+      "name": "Lists",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "375f8bd6-916f-4e0e-a1b6-77814e494942",
+          "name": "Get All Available Tags",
+          "request": {
+            "name": "Get All Available Tags",
+            "description": {
+              "content": "Returns all available permit tags for use as filter values in permit and contractor searches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1aedb60a-d8c5-41b7-984f-ba924b5b181b",
+              "name": "List of all available permit tags",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e25d78d2-a4f0-4359-9ab2-594a1c395814",
+      "name": "Meta",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd03b2f4-fdad-4594-9c9b-8aaf18fd0d15",
+          "name": "Get Data Release Date",
+          "request": {
+            "name": "Get Data Release Date",
+            "description": {
+              "content": "Returns the date of the current data release.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta",
+                "release-date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0854a661-cddf-443d-b222-e342ac797b5d",
+              "name": "Current data release date",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "release-date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"release_date\": \"2011-03-04\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a752b404-1725-450c-8770-e1450e3d2604",
+          "name": "Get Usage",
+          "request": {
+            "name": "Get Usage",
+            "description": {
+              "content": "Get current credit usage for the rolling 30-day period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1519ef74-123b-4def-8ddc-7897ed051b55",
+              "name": "Current API usage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"credits_used\": 3688,\n  \"credits_remaining\": 3324,\n  \"period_start\": \"1959-01-14\",\n  \"period_end\": \"1975-03-02\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shovels.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8e98055-f0d8-476a-9d75-f569c2b0a1bf",
+    "name": "Shovels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.\n\nContact Support:\n Name: Shovels Support\n Email: sales@shovels.ai",
+      "type": "text/plain"
+    }
+  }
+}
