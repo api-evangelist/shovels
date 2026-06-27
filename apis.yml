@@ -23,7 +23,7 @@ specificationVersion: '0.19'
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/shovels
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.shovels.ai/llms.txt
 apis:
   - aid: shovels:shovels-api
@@ -52,7 +52,7 @@ apis:
         url: https://docs.shovels.ai/docs/shovels-api-introduction
       - type: Pricing
         url: https://www.shovels.ai/pricing
-      - type: SignUp
+      - type: Signup
         url: https://app.shovels.ai
       - type: GitHubOrganization
         url: https://github.com/ShovelsAI
