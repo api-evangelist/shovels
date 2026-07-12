@@ -21,10 +21,18 @@ created: '2026-05-02'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 common:
+  - type: TrustCenter
+    url: security/shovels-trust-center.yml
+  - type: DomainSecurity
+    url: security/shovels-domain-security.yml
+  - type: Authentication
+    url: authentication/shovels-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/shovels
   - type: LlmsText
     url: https://docs.shovels.ai/llms.txt
+  - url: https://www.shovels.ai/feeds/all.atom.xml
+    type: Blog
 apis:
   - aid: shovels:shovels-api
     name: Shovels API
