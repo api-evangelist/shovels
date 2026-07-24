@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Shovels Addresses Lists API
+  description: The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.
+  version: v2
+  contact:
+    name: Shovels Support
+    url: https://docs.shovels.ai
+    email: sales@shovels.ai
+  termsOfService: https://www.shovels.ai/terms
+servers:
+- url: https://api.shovels.ai/v2
+  description: Shovels API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Lists
+paths:
+  /tags:
+    get:
+      operationId: getTags
+      summary: Get All Available Tags
+      description: Returns all available permit tags for use as filter values in permit and contractor searches.
+      tags:
+      - Lists
+      responses:
+        '200':
+          description: List of all available permit tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from app.shovels.ai Profile Settings

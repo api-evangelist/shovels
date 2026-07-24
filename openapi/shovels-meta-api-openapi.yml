@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: Shovels Addresses Meta API
+  description: The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.
+  version: v2
+  contact:
+    name: Shovels Support
+    url: https://docs.shovels.ai
+    email: sales@shovels.ai
+  termsOfService: https://www.shovels.ai/terms
+servers:
+- url: https://api.shovels.ai/v2
+  description: Shovels API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Meta
+paths:
+  /meta/release-date:
+    get:
+      operationId: getMetaReleaseDate
+      summary: Get Data Release Date
+      description: Returns the date of the current data release.
+      tags:
+      - Meta
+      responses:
+        '200':
+          description: Current data release date
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  release_date:
+                    type: string
+                    format: date
+  /usage:
+    get:
+      operationId: getUsage
+      summary: Get Usage
+      description: Get current credit usage for the rolling 30-day period.
+      tags:
+      - Meta
+      responses:
+        '200':
+          description: Current API usage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageStats'
+components:
+  schemas:
+    UsageStats:
+      type: object
+      properties:
+        credits_used:
+          type: integer
+          description: Credits used in the rolling 30-day period
+        credits_remaining:
+          type: integer
+          description: Credits remaining in the plan
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from app.shovels.ai Profile Settings

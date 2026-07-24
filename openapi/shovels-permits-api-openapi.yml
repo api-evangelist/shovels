@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: Shovels Addresses Permits API
+  description: The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.
+  version: v2
+  contact:
+    name: Shovels Support
+    url: https://docs.shovels.ai
+    email: sales@shovels.ai
+  termsOfService: https://www.shovels.ai/terms
+servers:
+- url: https://api.shovels.ai/v2
+  description: Shovels API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Permits
+paths:
+  /permits/search:
+    get:
+      operationId: searchPermits
+      summary: Search Permits
+      description: Returns a list of matching permit records based on geographic location and date range filters. Supports advanced filtering by permit status, tags, job value, property type, building area, and more.
+      tags:
+      - Permits
+      parameters:
+      - name: geo_id
+        in: query
+        required: true
+        description: Location filter (address, city, zip code, county, jurisdiction, or state geo_id)
+        schema:
+          type: string
+      - name: permit_from
+        in: query
+        required: true
+        description: Return permits issued on or after this date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: permit_to
+        in: query
+        required: true
+        description: Return permits issued on or before this date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        description: Filter by permit status (issued, approved, completed, expired, cancelled)
+        schema:
+          type: string
+      - name: tags
+        in: query
+        description: Filter by permit tags (comma-separated list)
+        schema:
+          type: string
+      - name: min_job_value
+        in: query
+        description: Minimum job value in dollars
+        schema:
+          type: number
+      - name: max_job_value
+        in: query
+        description: Maximum job value in dollars
+        schema:
+          type: number
+      - name: property_type
+        in: query
+        description: Filter by property type (residential, commercial, industrial)
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Pagination cursor for next page
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of results per page (1-100, default 50)
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      - name: include_count
+        in: query
+        description: Include total count in response (capped at 10,000)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of permits matching the search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermitListResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /permits/{id}:
+    get:
+      operationId: getPermitById
+      summary: Get Permit By ID
+      description: Retrieves specific permit records by their unique IDs.
+      tags:
+      - Permits
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique permit ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Permit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permit'
+        '404':
+          description: Permit not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+components:
+  schemas:
+    PermitListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permit'
+        size:
+          type: integer
+          description: Number of items returned
+        next_cursor:
+          type: string
+          nullable: true
+          description: Pagination cursor for next page
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
+    ValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
+    Permit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique permit identifier
+        status:
+          type: string
+          description: Current permit status (issued, approved, completed, expired, cancelled)
+        issue_date:
+          type: string
+          format: date
+          description: Date the permit was issued
+        final_date:
+          type: string
+          format: date
+          description: Date the permit was finalized
+        description:
+          type: string
+          description: Description of the permitted work
+        job_value:
+          type: number
+          description: Estimated value of the permitted job in dollars
+        tags:
+          type: array
+          items:
+            type: string
+          description: Permit classification tags
+        property_type:
+          type: string
+          description: Type of property (residential, commercial, industrial)
+        address:
+          $ref: '#/components/schemas/Address'
+        contractor_id:
+          type: string
+          description: Associated contractor ID
+        jurisdiction:
+          type: string
+          description: Jurisdiction that issued the permit
+    Address:
+      type: object
+      properties:
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from app.shovels.ai Profile Settings

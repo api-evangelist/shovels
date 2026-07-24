@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Shovels Addresses API
+  description: The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.
+  version: v2
+  contact:
+    name: Shovels Support
+    url: https://docs.shovels.ai
+    email: sales@shovels.ai
+  termsOfService: https://www.shovels.ai/terms
+servers:
+- url: https://api.shovels.ai/v2
+  description: Shovels API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Addresses
+paths:
+  /addresses/search:
+    get:
+      operationId: searchAddresses
+      summary: Search Addresses
+      description: Searches for addresses that have at least one associated permit. Results are ordered by relevance and in USPS notation.
+      tags:
+      - Addresses
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: The text to search for in address fields
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Pagination cursor
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of results per page (1-100, default 50)
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: List of matching addresses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressListResponse'
+  /addresses/{geo_id}/metrics/current:
+    get:
+      operationId: getAddressMetricsCurrent
+      summary: Get Address Metrics Current
+      description: Returns current metrics for a specific address.
+      tags:
+      - Addresses
+      parameters:
+      - name: geo_id
+        in: path
+        required: true
+        description: Address geo_id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Current address metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressMetrics'
+  /addresses/{geo_id}/metrics/monthly:
+    get:
+      operationId: getAddressMetricsMonthly
+      summary: Get Address Metrics Monthly
+      description: Returns monthly metrics for a specific address.
+      tags:
+      - Addresses
+      parameters:
+      - name: geo_id
+        in: path
+        required: true
+        description: Address geo_id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Monthly address metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressMetrics'
+  /addresses/{geo_id}/residents:
+    get:
+      operationId: getAddressResidents
+      summary: Get Address Residents
+      description: Retrieves resident information for a given address.
+      tags:
+      - Addresses
+      parameters:
+      - name: geo_id
+        in: path
+        required: true
+        description: Address geo_id
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Pagination cursor
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of results per page
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of residents at the address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResidentListResponse'
+components:
+  schemas:
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
+    Address:
+      type: object
+      properties:
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
+    AddressListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    Resident:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    AddressMetrics:
+      type: object
+      properties:
+        geo_id:
+          type: string
+        permit_count:
+          type: integer
+        active_permits:
+          type: integer
+        avg_job_value:
+          type: number
+        total_job_value:
+          type: number
+        period:
+          type: string
+          format: date
+    ResidentListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resident'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from app.shovels.ai Profile Settings
