@@ -8,7 +8,20 @@ description: >-
   and telecommunications providers identify qualified contractors, understand work history, and power sales and
   marketing with rich permit data.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shovels.png
 tags:
   - Construction
   - Building Permits
@@ -36,54 +49,210 @@ common:
   - url: https://www.shovels.ai/feeds/all.atom.xml
     type: Blog
 apis:
-  - aid: shovels:shovels-api
-    name: Shovels API
-    description: >-
-      The Shovels API v2 provides programmatic access to building permit intelligence and contractor data from 1,800+ US
-      jurisdictions. Access 130M+ permits, 2.3M+ contractor profiles, geographic metrics, resident data, and market
-      analytics. Authentication uses an X-API-Key header. Supports cursor-based pagination, credit tracking, and
-      advanced filtering by geography, date range, tags, job value, property type, and contractor attributes. Data
-      refreshes on the 1st and 15th of each month.
-    humanURL: https://www.shovels.ai/api
-    baseURL: https://api.shovels.ai/v2
-    tags:
-      - Construction
-      - Building Permits
-      - Contractors
-      - Property Data
-      - Market Intelligence
-      - Real Estate
-    properties:
-      - type: Documentation
-        url: https://docs.shovels.ai
-      - type: GettingStarted
-        url: https://docs.shovels.ai/docs/shovels-api-introduction
-      - type: Authentication
-        url: https://docs.shovels.ai/docs/shovels-api-introduction
-      - type: Pricing
-        url: https://www.shovels.ai/pricing
-      - type: Signup
-        url: https://app.shovels.ai
-      - type: GitHubOrganization
-        url: https://github.com/ShovelsAI
-      - type: OpenAPI
-        url: openapi/shovels-openapi.yml
-      - type: JSONSchema
-        url: json-schema/shovels-permit-schema.json
-      - type: JSONSchema
-        url: json-schema/shovels-contractor-schema.json
-      - type: JSONStructure
-        url: json-structure/shovels-permit-structure.json
-      - type: JSONLD
-        url: json-ld/shovels-context.jsonld
-      - type: SpectralRules
-        url: rules/shovels-rules.yml
-      - type: Vocabulary
-        url: vocabulary/shovels-vocabulary.yml
-    contact:
-      - FN: Shovels Support
-        url: https://docs.shovels.ai
-        email: sales@shovels.ai
+- aid: shovels:shovels-addresses-api
+  name: Shovels Addresses API
+  description: The Addresses API from Shovels — 4 operation(s) for addresses.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Addresses
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
+- aid: shovels:shovels-contractors-api
+  name: Shovels Contractors API
+  description: The Contractors API from Shovels — 5 operation(s) for contractors.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Contractors
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-contractors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
+- aid: shovels:shovels-geography-api
+  name: Shovels Geography API
+  description: The Geography API from Shovels — 7 operation(s) for geography.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Geography
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-geography-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
+- aid: shovels:shovels-lists-api
+  name: Shovels Lists API
+  description: The Lists API from Shovels — 1 operation(s) for lists.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-lists-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
+- aid: shovels:shovels-meta-api
+  name: Shovels Meta API
+  description: The Meta API from Shovels — 2 operation(s) for meta.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-meta-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
+- aid: shovels:shovels-permits-api
+  name: Shovels Permits API
+  description: The Permits API from Shovels — 2 operation(s) for permits.
+  humanURL: https://www.shovels.ai/api
+  baseURL: https://api.shovels.ai/v2
+  tags:
+  - Permits
+  properties:
+  - type: OpenAPI
+    url: openapi/shovels-permits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shovels.ai
+  - type: GettingStarted
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Authentication
+    url: https://docs.shovels.ai/docs/shovels-api-introduction
+  - type: Pricing
+    url: https://www.shovels.ai/pricing
+  - type: Signup
+    url: https://app.shovels.ai
+  - type: GitHubOrganization
+    url: https://github.com/ShovelsAI
+  - type: JSONSchema
+    url: json-schema/shovels-permit-schema.json
+  - type: JSONSchema
+    url: json-schema/shovels-contractor-schema.json
+  - type: JSONStructure
+    url: json-structure/shovels-permit-structure.json
+  - type: JSONLD
+    url: json-ld/shovels-context.jsonld
+  - type: SpectralRules
+    url: rules/shovels-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shovels-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
