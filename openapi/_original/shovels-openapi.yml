@@ -1,0 +1,1031 @@
+openapi: 3.1.0
+info:
+  title: Shovels API
+  description: >-
+    The Shovels API provides building permit intelligence and contractor data
+    aggregated from 1,800+ jurisdictions across the United States. Access
+    130M+ building permits, 2.3M+ contractor profiles, property details,
+    resident information, and geographic metrics. The API is used by materials
+    suppliers, construction tech companies, energy and climate firms, home
+    services companies, real estate professionals, and telecommunications
+    providers to power sales, marketing, and market analytics.
+  version: 'v2'
+  contact:
+    name: Shovels Support
+    url: https://docs.shovels.ai
+    email: sales@shovels.ai
+  termsOfService: https://www.shovels.ai/terms
+servers:
+  - url: https://api.shovels.ai/v2
+    description: Shovels API v2
+security:
+  - ApiKeyAuth: []
+paths:
+  /permits/search:
+    get:
+      operationId: searchPermits
+      summary: Search Permits
+      description: >-
+        Returns a list of matching permit records based on geographic location
+        and date range filters. Supports advanced filtering by permit status,
+        tags, job value, property type, building area, and more.
+      tags:
+        - Permits
+      parameters:
+        - name: geo_id
+          in: query
+          required: true
+          description: Location filter (address, city, zip code, county, jurisdiction, or state geo_id)
+          schema:
+            type: string
+        - name: permit_from
+          in: query
+          required: true
+          description: Return permits issued on or after this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: permit_to
+          in: query
+          required: true
+          description: Return permits issued on or before this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: status
+          in: query
+          description: Filter by permit status (issued, approved, completed, expired, cancelled)
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Filter by permit tags (comma-separated list)
+          schema:
+            type: string
+        - name: min_job_value
+          in: query
+          description: Minimum job value in dollars
+          schema:
+            type: number
+        - name: max_job_value
+          in: query
+          description: Maximum job value in dollars
+          schema:
+            type: number
+        - name: property_type
+          in: query
+          description: Filter by property type (residential, commercial, industrial)
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor for next page
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page (1-100, default 50)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: include_count
+          in: query
+          description: Include total count in response (capped at 10,000)
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of permits matching the search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermitListResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /permits/{id}:
+    get:
+      operationId: getPermitById
+      summary: Get Permit By ID
+      description: Retrieves specific permit records by their unique IDs.
+      tags:
+        - Permits
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique permit ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Permit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permit'
+        '404':
+          description: Permit not found
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /contractors/search:
+    get:
+      operationId: searchContractors
+      summary: Search Contractors
+      description: >-
+        Returns contractors doing work within the given location area. Supports
+        filtering by permit date range, specialty, license type, inspection pass
+        rate, and more. Useful for identifying qualified contractors and
+        understanding their work history.
+      tags:
+        - Contractors
+      parameters:
+        - name: geo_id
+          in: query
+          required: true
+          description: Location filter for the search area
+          schema:
+            type: string
+        - name: permit_from
+          in: query
+          required: true
+          description: Return permits that started on or after this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: permit_to
+          in: query
+          required: true
+          description: Return permits that started on or before this date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: name
+          in: query
+          description: Filter by contractor name
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Filter by permit tags (contractor specialties)
+          schema:
+            type: string
+        - name: classification
+          in: query
+          description: Filter by contractor classification
+          schema:
+            type: string
+        - name: min_inspection_pass_rate
+          in: query
+          description: Minimum inspection pass rate (0-1)
+          schema:
+            type: number
+            minimum: 0
+            maximum: 1
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page (1-100, default 50)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: include_count
+          in: query
+          description: Include total count in response
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of contractors matching the search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorListResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+  /contractors/{id}:
+    get:
+      operationId: getContractorById
+      summary: Get Contractor By ID
+      description: Retrieves detailed contractor information by unique ID, including business details, contact information, license data, and permit statistics.
+      tags:
+        - Contractors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique contractor ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Contractor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contractor'
+        '404':
+          description: Contractor not found
+  /contractors/{id}/permits:
+    get:
+      operationId: getContractorPermits
+      summary: Get Contractor Permits
+      description: Retrieves all permits associated with a specific contractor.
+      tags:
+        - Contractors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique contractor ID
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: List of permits for the contractor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermitListResponse'
+  /contractors/{id}/employees:
+    get:
+      operationId: getContractorEmployees
+      summary: Get Contractor Employees
+      description: Returns a paginated list of employees for a specific contractor, including contact information for decision makers.
+      tags:
+        - Contractors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique contractor ID
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: List of contractor employees
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeListResponse'
+  /contractors/{id}/metrics:
+    get:
+      operationId: getContractorMetrics
+      summary: Get Contractor Metrics
+      description: Returns filtered performance metrics for a specific contractor.
+      tags:
+        - Contractors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique contractor ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Contractor metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorMetrics'
+  /addresses/search:
+    get:
+      operationId: searchAddresses
+      summary: Search Addresses
+      description: >-
+        Searches for addresses that have at least one associated permit. Results
+        are ordered by relevance and in USPS notation.
+      tags:
+        - Addresses
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The text to search for in address fields
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page (1-100, default 50)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: List of matching addresses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressListResponse'
+  /addresses/{geo_id}/metrics/current:
+    get:
+      operationId: getAddressMetricsCurrent
+      summary: Get Address Metrics Current
+      description: Returns current metrics for a specific address.
+      tags:
+        - Addresses
+      parameters:
+        - name: geo_id
+          in: path
+          required: true
+          description: Address geo_id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Current address metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressMetrics'
+  /addresses/{geo_id}/metrics/monthly:
+    get:
+      operationId: getAddressMetricsMonthly
+      summary: Get Address Metrics Monthly
+      description: Returns monthly metrics for a specific address.
+      tags:
+        - Addresses
+      parameters:
+        - name: geo_id
+          in: path
+          required: true
+          description: Address geo_id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Monthly address metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressMetrics'
+  /addresses/{geo_id}/residents:
+    get:
+      operationId: getAddressResidents
+      summary: Get Address Residents
+      description: Retrieves resident information for a given address.
+      tags:
+        - Addresses
+      parameters:
+        - name: geo_id
+          in: path
+          required: true
+          description: Address geo_id
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of residents at the address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResidentListResponse'
+  /cities/search:
+    get:
+      operationId: searchCities
+      summary: Search Cities
+      description: Searches for cities by name to retrieve geo_id values for use in other API calls.
+      tags:
+        - Geography
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: City name search term
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of matching cities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoListResponse'
+  /cities/{geo_id}:
+    get:
+      operationId: getCityById
+      summary: Get City By ID
+      description: Returns city details and location hierarchy.
+      tags:
+        - Geography
+      parameters:
+        - name: geo_id
+          in: path
+          required: true
+          description: City geo_id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: City details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoLocation'
+  /cities/{geo_id}/metrics/current:
+    get:
+      operationId: getCityMetricsCurrent
+      summary: Get City Metrics Current
+      description: Returns current permit activity metrics for a city.
+      tags:
+        - Geography
+      parameters:
+        - name: geo_id
+          in: path
+          required: true
+          description: City geo_id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Current city metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoMetrics'
+  /counties/search:
+    get:
+      operationId: searchCounties
+      summary: Search Counties
+      description: Searches for counties by name.
+      tags:
+        - Geography
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: County name search term
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of matching counties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoListResponse'
+  /jurisdictions/search:
+    get:
+      operationId: searchJurisdictions
+      summary: Search Jurisdictions
+      description: Searches for building permit jurisdictions by name.
+      tags:
+        - Geography
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Jurisdiction name search term
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of matching jurisdictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoListResponse'
+  /states/search:
+    get:
+      operationId: searchStates
+      summary: Search States
+      description: Searches for US states based on the provided search term.
+      tags:
+        - Geography
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: State name search term
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page (1-100, default 50)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: List of matching states
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoListResponse'
+  /zipcodes/search:
+    get:
+      operationId: searchZipcodes
+      summary: Search Zipcodes
+      description: Searches for US zip codes.
+      tags:
+        - Geography
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Zip code search term
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Pagination cursor
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of matching zip codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoListResponse'
+  /tags:
+    get:
+      operationId: getTags
+      summary: Get All Available Tags
+      description: Returns all available permit tags for use as filter values in permit and contractor searches.
+      tags:
+        - Lists
+      responses:
+        '200':
+          description: List of all available permit tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /meta/release-date:
+    get:
+      operationId: getMetaReleaseDate
+      summary: Get Data Release Date
+      description: Returns the date of the current data release.
+      tags:
+        - Meta
+      responses:
+        '200':
+          description: Current data release date
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  release_date:
+                    type: string
+                    format: date
+  /usage:
+    get:
+      operationId: getUsage
+      summary: Get Usage
+      description: Get current credit usage for the rolling 30-day period.
+      tags:
+        - Meta
+      responses:
+        '200':
+          description: Current API usage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageStats'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key obtained from app.shovels.ai Profile Settings
+  schemas:
+    Permit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique permit identifier
+        status:
+          type: string
+          description: Current permit status (issued, approved, completed, expired, cancelled)
+        issue_date:
+          type: string
+          format: date
+          description: Date the permit was issued
+        final_date:
+          type: string
+          format: date
+          description: Date the permit was finalized
+        description:
+          type: string
+          description: Description of the permitted work
+        job_value:
+          type: number
+          description: Estimated value of the permitted job in dollars
+        tags:
+          type: array
+          items:
+            type: string
+          description: Permit classification tags
+        property_type:
+          type: string
+          description: Type of property (residential, commercial, industrial)
+        address:
+          $ref: '#/components/schemas/Address'
+        contractor_id:
+          type: string
+          description: Associated contractor ID
+        jurisdiction:
+          type: string
+          description: Jurisdiction that issued the permit
+    PermitListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permit'
+        size:
+          type: integer
+          description: Number of items returned
+        next_cursor:
+          type: string
+          nullable: true
+          description: Pagination cursor for next page
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    Contractor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique contractor identifier
+        name:
+          type: string
+          description: Contractor or business name
+        license:
+          type: string
+          description: Contractor license number
+        classification:
+          type: string
+          description: Contractor classification type
+        phone:
+          type: string
+          description: Contact phone number
+        email:
+          type: string
+          format: email
+          description: Contact email address
+        website:
+          type: string
+          format: uri
+          description: Business website
+        address:
+          $ref: '#/components/schemas/Address'
+        inspection_pass_rate:
+          type: number
+          description: Ratio of passed inspections (0-1)
+        permit_count:
+          type: integer
+          description: Total number of associated permits
+        tags:
+          type: array
+          items:
+            type: string
+          description: Contractor specialty tags
+    ContractorListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contractor'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    ContractorMetrics:
+      type: object
+      properties:
+        contractor_id:
+          type: string
+        permit_count:
+          type: integer
+        inspection_pass_rate:
+          type: number
+        avg_job_value:
+          type: number
+        total_job_value:
+          type: number
+        active_permits:
+          type: integer
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+        contractor_id:
+          type: string
+    EmployeeListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+    Address:
+      type: object
+      properties:
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
+    AddressListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    AddressMetrics:
+      type: object
+      properties:
+        geo_id:
+          type: string
+        permit_count:
+          type: integer
+        active_permits:
+          type: integer
+        avg_job_value:
+          type: number
+        total_job_value:
+          type: number
+        period:
+          type: string
+          format: date
+    ResidentListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resident'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+    Resident:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    GeoLocation:
+      type: object
+      properties:
+        geo_id:
+          type: string
+        name:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+    GeoListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoLocation'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    GeoMetrics:
+      type: object
+      properties:
+        geo_id:
+          type: string
+        permit_count:
+          type: integer
+        active_permits:
+          type: integer
+        avg_job_value:
+          type: number
+        contractor_count:
+          type: integer
+        period:
+          type: string
+          format: date
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum: [eq, gte]
+          description: Whether the value is exact (eq) or a lower bound (gte)
+    ValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
+    UsageStats:
+      type: object
+      properties:
+        credits_used:
+          type: integer
+          description: Credits used in the rolling 30-day period
+        credits_remaining:
+          type: integer
+          description: Credits remaining in the plan
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date

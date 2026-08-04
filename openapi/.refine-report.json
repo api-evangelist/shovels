@@ -1,0 +1,24 @@
+{
+  "provider": "shovels",
+  "sources": [
+    "shovels-addresses-api-openapi.yml",
+    "shovels-contractors-api-openapi.yml",
+    "shovels-geography-api-openapi.yml",
+    "shovels-lists-api-openapi.yml",
+    "shovels-meta-api-openapi.yml",
+    "shovels-permits-api-openapi.yml"
+  ],
+  "outputs": [
+    "shovels-addresses-api-openapi.yml",
+    "shovels-contractors-api-openapi.yml",
+    "shovels-geography-api-openapi.yml",
+    "shovels-lists-api-openapi.yml",
+    "shovels-meta-api-openapi.yml",
+    "shovels-permits-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
