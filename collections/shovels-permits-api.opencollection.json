@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shovels Addresses Permits API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Permits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/permits/search",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "query",
+                "description": "Location filter (address, city, zip code, county, jurisdiction, or state geo_id)"
+              },
+              {
+                "name": "permit_from",
+                "value": "",
+                "type": "query",
+                "description": "Return permits issued on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "permit_to",
+                "value": "",
+                "type": "query",
+                "description": "Return permits issued on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit status (issued, approved, completed, expired, cancelled)"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit tags (comma-separated list)"
+              },
+              {
+                "name": "min_job_value",
+                "value": "",
+                "type": "query",
+                "description": "Minimum job value in dollars"
+              },
+              {
+                "name": "max_job_value",
+                "value": "",
+                "type": "query",
+                "description": "Maximum job value in dollars"
+              },
+              {
+                "name": "property_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by property type (residential, commercial, industrial)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for next page"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              },
+              {
+                "name": "include_count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response (capped at 10,000)"
+              }
+            ]
+          },
+          "docs": "Returns a list of matching permit records based on geographic location and date range filters. Supports advanced filtering by permit status, tags, job value, property type, building area, and more."
+        },
+        {
+          "info": {
+            "name": "Get Permit By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/permits/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique permit ID"
+              }
+            ]
+          },
+          "docs": "Retrieves specific permit records by their unique IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

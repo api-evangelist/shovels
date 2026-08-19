@@ -1,0 +1,481 @@
+{
+  "item": [
+    {
+      "id": "4901f52f-eddd-479c-a317-e58c19625b5a",
+      "name": "Addresses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "881a33f6-0825-4717-b01d-f44db1aad6c4",
+          "name": "Search Addresses",
+          "request": {
+            "name": "Search Addresses",
+            "description": {
+              "content": "Searches for addresses that have at least one associated permit. Results are ordered by relevance and in USPS notation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The text to search for in address fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "348ad40e-4511-40a2-905b-48f1dc8e51ac",
+              "name": "List of matching addresses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"street_no\": \"string\",\n      \"street\": \"string\",\n      \"city\": \"string\",\n      \"county\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"jurisdiction\": \"string\",\n      \"latitude\": 3811.469663502766,\n      \"longitude\": 5931.970868536824,\n      \"geo_id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"street_no\": \"string\",\n      \"street\": \"string\",\n      \"city\": \"string\",\n      \"county\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"jurisdiction\": \"string\",\n      \"latitude\": 7073.302425051676,\n      \"longitude\": 1092.7314343102767,\n      \"geo_id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"size\": 3070,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 5289,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89b4e41f-96ce-4603-a7c4-11198f1132db",
+          "name": "Get Address Metrics Current",
+          "request": {
+            "name": "Get Address Metrics Current",
+            "description": {
+              "content": "Returns current metrics for a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "metrics",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82841b6e-bc05-481f-b8bb-efc9e900c14b",
+              "name": "Current address metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "metrics",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geo_id\": \"string\",\n  \"permit_count\": 3408,\n  \"active_permits\": 2177,\n  \"avg_job_value\": 7435.695446467998,\n  \"total_job_value\": 3905.1519441891714,\n  \"period\": \"1983-01-16\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16ec22b0-5b91-47ba-9c1b-e88f27382fdf",
+          "name": "Get Address Metrics Monthly",
+          "request": {
+            "name": "Get Address Metrics Monthly",
+            "description": {
+              "content": "Returns monthly metrics for a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "metrics",
+                "monthly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7e8edb9-540c-4db2-83af-bc5aab9227bb",
+              "name": "Monthly address metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "metrics",
+                    "monthly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"geo_id\": \"string\",\n    \"permit_count\": 39,\n    \"active_permits\": 6764,\n    \"avg_job_value\": 1039.434900671282,\n    \"total_job_value\": 4338.786402139234,\n    \"period\": \"2024-11-21\"\n  },\n  {\n    \"geo_id\": \"string\",\n    \"permit_count\": 7296,\n    \"active_permits\": 5218,\n    \"avg_job_value\": 7892.930230919612,\n    \"total_job_value\": 6631.313473803817,\n    \"period\": \"1955-12-09\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52f62b29-c1cc-489b-8185-fcfbf9f78859",
+          "name": "Get Address Residents",
+          "request": {
+            "name": "Get Address Residents",
+            "description": {
+              "content": "Retrieves resident information for a given address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addresses",
+                ":geo_id",
+                "residents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geo_id",
+                  "description": "(Required) Address geo_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "698e15e3-beba-4853-94b2-ed49f8b32631",
+              "name": "List of residents at the address",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addresses",
+                    ":geo_id",
+                    "residents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geo_id",
+                      "description": "(Required) Address geo_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 6452.927594391207,\n        \"longitude\": 2479.7126450971864,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 847.4203476100273,\n        \"longitude\": 1945.969971573911,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"size\": 8607,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shovels.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b21d282-1951-4d1d-b6f7-7874d55caf48",
+    "name": "Shovels Addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.\n\nContact Support:\n Name: Shovels Support\n Email: sales@shovels.ai",
+      "type": "text/plain"
+    }
+  }
+}

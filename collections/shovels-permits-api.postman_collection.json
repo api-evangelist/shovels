@@ -1,0 +1,526 @@
+{
+  "item": [
+    {
+      "id": "49ac7621-a52a-45ef-bdb9-d6cb4270a930",
+      "name": "Permits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82659fa6-5e61-4105-858a-8762345b2736",
+          "name": "Search Permits",
+          "request": {
+            "name": "Search Permits",
+            "description": {
+              "content": "Returns a list of matching permit records based on geographic location and date range filters. Supports advanced filtering by permit status, tags, job value, property type, building area, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permits",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geo_id",
+                  "value": "<string>",
+                  "description": "(Required) Location filter (address, city, zip code, county, jurisdiction, or state geo_id)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_from",
+                  "value": "<date>",
+                  "description": "(Required) Return permits issued on or after this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_to",
+                  "value": "<date>",
+                  "description": "(Required) Return permits issued on or before this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by permit status (issued, approved, completed, expired, cancelled)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by permit tags (comma-separated list)"
+                },
+                {
+                  "disabled": false,
+                  "key": "min_job_value",
+                  "value": "<number>",
+                  "description": "Minimum job value in dollars"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_job_value",
+                  "value": "<number>",
+                  "description": "Maximum job value in dollars"
+                },
+                {
+                  "disabled": false,
+                  "key": "property_type",
+                  "value": "<string>",
+                  "description": "Filter by property type (residential, commercial, industrial)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor for next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_count",
+                  "value": "<boolean>",
+                  "description": "Include total count in response (capped at 10,000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b14ba73-17de-43ab-af5c-21a0a68ffa91",
+              "name": "List of permits matching the search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "property_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1992-06-02\",\n      \"final_date\": \"2004-03-12\",\n      \"description\": \"string\",\n      \"job_value\": 7555.691697118374,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 4469.83108295083,\n        \"longitude\": 3431.161214407609,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"2007-11-10\",\n      \"final_date\": \"1950-11-06\",\n      \"description\": \"string\",\n      \"job_value\": 358.70291366543296,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 6345.839334949862,\n        \"longitude\": 3115.3647980887854,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    }\n  ],\n  \"size\": 9629,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 5999,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f86a2ff6-4325-4866-be5c-8e3a660588ab",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "max_job_value",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "property_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09063d96-f831-4968-aae9-1735be02f3f5",
+          "name": "Get Permit By ID",
+          "request": {
+            "name": "Get Permit By ID",
+            "description": {
+              "content": "Retrieves specific permit records by their unique IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permits",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique permit ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f05ce882-033e-422f-9b74-a3a5bdf17174",
+              "name": "Permit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"issue_date\": \"1950-12-19\",\n  \"final_date\": \"1999-06-26\",\n  \"description\": \"string\",\n  \"job_value\": 6259.743646390145,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"property_type\": \"string\",\n  \"address\": {\n    \"street_no\": \"string\",\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"county\": \"string\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"jurisdiction\": \"string\",\n    \"latitude\": 5848.30270380285,\n    \"longitude\": 555.603543712222,\n    \"geo_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"contractor_id\": \"string\",\n  \"jurisdiction\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d12a5e93-53a5-494f-a8ec-b555dfe126be",
+              "name": "Permit not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71a62d8b-0768-4b60-97db-2df841743030",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permits",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique permit ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shovels.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b0f6b938-a312-4731-840f-df1cfc22bc3b",
+    "name": "Shovels Addresses Permits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.\n\nContact Support:\n Name: Shovels Support\n Email: sales@shovels.ai",
+      "type": "text/plain"
+    }
+  }
+}

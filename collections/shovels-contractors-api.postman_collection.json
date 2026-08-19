@@ -1,0 +1,798 @@
+{
+  "item": [
+    {
+      "id": "d4c2b522-a1d5-42ad-95e6-cdbe19cb26c0",
+      "name": "Contractors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e594579c-032f-4a91-a6cd-d56bf20d42c4",
+          "name": "Search Contractors",
+          "request": {
+            "name": "Search Contractors",
+            "description": {
+              "content": "Returns contractors doing work within the given location area. Supports filtering by permit date range, specialty, license type, inspection pass rate, and more. Useful for identifying qualified contractors and understanding their work history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geo_id",
+                  "value": "<string>",
+                  "description": "(Required) Location filter for the search area"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_from",
+                  "value": "<date>",
+                  "description": "(Required) Return permits that started on or after this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "permit_to",
+                  "value": "<date>",
+                  "description": "(Required) Return permits that started on or before this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by contractor name"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by permit tags (contractor specialties)"
+                },
+                {
+                  "disabled": false,
+                  "key": "classification",
+                  "value": "<string>",
+                  "description": "Filter by contractor classification"
+                },
+                {
+                  "disabled": false,
+                  "key": "min_inspection_pass_rate",
+                  "value": "<number>",
+                  "description": "Minimum inspection pass rate (0-1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page (1-100, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_count",
+                  "value": "<boolean>",
+                  "description": "Include total count in response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3fe1123-ca79-468c-a83e-2b4276f2d7d0",
+              "name": "List of contractors matching the search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_inspection_pass_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"license\": \"string\",\n      \"classification\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"LV9f@FEcDjIwMVjgZhrvnyTgwZvNgT.aqf\",\n      \"website\": \"https://yKgo.kohviZh9zKuU1phRnFO\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 7943.977631138455,\n        \"longitude\": 2953.904218895265,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"inspection_pass_rate\": 2534.894599405645,\n      \"permit_count\": 6260,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"license\": \"string\",\n      \"classification\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"t5lYOFcpu6w@iqOPYbZsf.cqny\",\n      \"website\": \"https://fQJhsb.lijJcTPn1ci,kMr1wNfJZmwZqcTQ,HLViVJQafE6AvqVUixa5bKmjFH\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 831.019235783308,\n        \"longitude\": 2402.0199712217304,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"inspection_pass_rate\": 8794.259503989682,\n      \"permit_count\": 4443,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"size\": 7046,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 3904,\n    \"relation\": \"gte\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a27e83c8-4144-4361-ab52-e16897a4cc7c",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geo_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permit_from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "permit_to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "classification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_inspection_pass_rate",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "include_count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e35143a-0407-4548-87f5-57fd8c539a0a",
+          "name": "Get Contractor By ID",
+          "request": {
+            "name": "Get Contractor By ID",
+            "description": {
+              "content": "Retrieves detailed contractor information by unique ID, including business details, contact information, license data, and permit statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e96c421-ad1a-476b-81e6-318c5caa9e17",
+              "name": "Contractor details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"license\": \"string\",\n  \"classification\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"Sp4bJ8RglpEd@dYhCLpWuD.xnxj\",\n  \"website\": \"https://tdEinIjquuEmLrJFGcwI.sfwoMRpdnaLIaORh2yFwaVWa5DFMFf84\",\n  \"address\": {\n    \"street_no\": \"string\",\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"county\": \"string\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"jurisdiction\": \"string\",\n    \"latitude\": 3461.9535001000622,\n    \"longitude\": 8289.39481275739,\n    \"geo_id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"inspection_pass_rate\": 9192.477786827525,\n  \"permit_count\": 8399,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86a17f61-b417-4039-b048-4435f4466ec9",
+              "name": "Contractor not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0711ea60-c764-451e-8a07-05d0ba663ded",
+          "name": "Get Contractor Permits",
+          "request": {
+            "name": "Get Contractor Permits",
+            "description": {
+              "content": "Retrieves all permits associated with a specific contractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "permits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29f5b12c-eb10-467c-b150-7a29b9f028ad",
+              "name": "List of permits for the contractor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "permits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1959-01-28\",\n      \"final_date\": \"1992-08-08\",\n      \"description\": \"string\",\n      \"job_value\": 6728.511912698064,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 8631.68778909652,\n        \"longitude\": 9107.383691971409,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"issue_date\": \"1990-04-19\",\n      \"final_date\": \"1957-07-23\",\n      \"description\": \"string\",\n      \"job_value\": 9204.783769423562,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"property_type\": \"string\",\n      \"address\": {\n        \"street_no\": \"string\",\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"county\": \"string\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"jurisdiction\": \"string\",\n        \"latitude\": 7262.59498632382,\n        \"longitude\": 738.7271269405516,\n        \"geo_id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"contractor_id\": \"string\",\n      \"jurisdiction\": \"string\"\n    }\n  ],\n  \"size\": 7160,\n  \"next_cursor\": \"string\",\n  \"total_count\": {\n    \"value\": 9803,\n    \"relation\": \"eq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e103ec9c-c7e7-48bb-9b8e-d254a2dad977",
+          "name": "Get Contractor Employees",
+          "request": {
+            "name": "Get Contractor Employees",
+            "description": {
+              "content": "Returns a paginated list of employees for a specific contractor, including contact information for decision makers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f086cc56-ff73-419d-a959-cabb4db4e425",
+              "name": "List of contractor employees",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"qPIklKBtYO@AKGzmKFAVuTaTXHKdwnVfRn.bepz\",\n      \"contractor_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"HnLMtA@CfqgNGzXptddD.uaes\",\n      \"contractor_id\": \"string\"\n    }\n  ],\n  \"size\": 1510,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edb5898b-eb9e-4a6f-a1c9-adb4a9e7e25d",
+          "name": "Get Contractor Metrics",
+          "request": {
+            "name": "Get Contractor Metrics",
+            "description": {
+              "content": "Returns filtered performance metrics for a specific contractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contractors",
+                ":id",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique contractor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58f0a5e9-e3f0-4c81-80b4-4b2dd4c60314",
+              "name": "Contractor metrics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    ":id",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique contractor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contractor_id\": \"string\",\n  \"permit_count\": 1673,\n  \"inspection_pass_rate\": 6096.342321264755,\n  \"avg_job_value\": 5481.562157969968,\n  \"total_job_value\": 6666.718410149923,\n  \"active_permits\": 1411\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shovels.ai/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f618900-f41f-4707-a919-f821abe5e264",
+    "name": "Shovels Addresses Contractors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shovels API provides building permit intelligence and contractor data aggregated from 1,800+ jurisdictions across the United States. Access 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic metrics. The API is used by materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers to power sales, marketing, and market analytics.\n\nContact Support:\n Name: Shovels Support\n Email: sales@shovels.ai",
+      "type": "text/plain"
+    }
+  }
+}

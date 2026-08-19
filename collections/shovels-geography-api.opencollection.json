@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shovels Addresses Geography API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geography",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "City name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for cities by name to retrieve geo_id values for use in other API calls."
+        },
+        {
+          "info": {
+            "name": "Get City By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/:geo_id",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "City geo_id"
+              }
+            ]
+          },
+          "docs": "Returns city details and location hierarchy."
+        },
+        {
+          "info": {
+            "name": "Get City Metrics Current",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/cities/:geo_id/metrics/current",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "path",
+                "description": "City geo_id"
+              }
+            ]
+          },
+          "docs": "Returns current permit activity metrics for a city."
+        },
+        {
+          "info": {
+            "name": "Search Counties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/counties/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "County name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for counties by name."
+        },
+        {
+          "info": {
+            "name": "Search Jurisdictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/jurisdictions/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Jurisdiction name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for building permit jurisdictions by name."
+        },
+        {
+          "info": {
+            "name": "Search States",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/states/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "State name search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              }
+            ]
+          },
+          "docs": "Searches for US states based on the provided search term."
+        },
+        {
+          "info": {
+            "name": "Search Zipcodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/zipcodes/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Zip code search term"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Searches for US zip codes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

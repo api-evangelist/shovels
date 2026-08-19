@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shovels Addresses Contractors API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contractors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Contractors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/search",
+            "params": [
+              {
+                "name": "geo_id",
+                "value": "",
+                "type": "query",
+                "description": "Location filter for the search area"
+              },
+              {
+                "name": "permit_from",
+                "value": "",
+                "type": "query",
+                "description": "Return permits that started on or after this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "permit_to",
+                "value": "",
+                "type": "query",
+                "description": "Return permits that started on or before this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contractor name"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by permit tags (contractor specialties)"
+              },
+              {
+                "name": "classification",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contractor classification"
+              },
+              {
+                "name": "min_inspection_pass_rate",
+                "value": "",
+                "type": "query",
+                "description": "Minimum inspection pass rate (0-1)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 50)"
+              },
+              {
+                "name": "include_count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response"
+              }
+            ]
+          },
+          "docs": "Returns contractors doing work within the given location area. Supports filtering by permit date range, specialty, license type, inspection pass rate, and more. Useful for identifying qualified contractors and understanding their work history."
+        },
+        {
+          "info": {
+            "name": "Get Contractor By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed contractor information by unique ID, including business details, contact information, license data, and permit statistics."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Permits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/permits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieves all permits associated with a specific contractor."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/employees",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of employees for a specific contractor, including contact information for decision makers."
+        },
+        {
+          "info": {
+            "name": "Get Contractor Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shovels.ai/v2/contractors/:id/metrics",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique contractor ID"
+              }
+            ]
+          },
+          "docs": "Returns filtered performance metrics for a specific contractor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
