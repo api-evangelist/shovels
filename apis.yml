@@ -26,6 +26,13 @@ tags:
   - Construction
   - Building Permits
   - Contractors
+  - Real-Estate
+  - Property Data
+  - Market Intelligence
+tags_raw:
+  - Construction
+  - Building Permits
+  - Contractors
   - Real Estate
   - Property Data
   - Market Intelligence
@@ -157,6 +164,8 @@ apis:
   humanURL: https://www.shovels.ai/api
   baseURL: https://api.shovels.ai/v2
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
