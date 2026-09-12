@@ -54,6 +54,8 @@ created: '2026-05-02'
 modified: '2026-05-19'
 specificationVersion: '0.23'
 common:
+  - type: Website
+    url: https://www.shovels.ai/
   - type: AgenticAccess
     url: agentic-access/shovels-agentic-access.yml
   - type: TrustCenter
