@@ -1,12 +1,7 @@
 {
   "provider": "shovels",
   "sources": [
-    "shovels-addresses-api-openapi.yml",
-    "shovels-contractors-api-openapi.yml",
-    "shovels-geography-api-openapi.yml",
-    "shovels-lists-api-openapi.yml",
-    "shovels-meta-api-openapi.yml",
-    "shovels-permits-api-openapi.yml"
+    "_original/shovels-openapi.yml"
   ],
   "outputs": [
     "shovels-addresses-api-openapi.yml",
@@ -19,6 +14,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shovels-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "shovels-openapi.yml: declared missing tag: Addresses",
+    "shovels-openapi.yml: declared missing tag: Contractors",
+    "shovels-openapi.yml: declared missing tag: Geography",
+    "shovels-openapi.yml: declared missing tag: Lists",
+    "shovels-openapi.yml: declared missing tag: Meta",
+    "shovels-openapi.yml: declared missing tag: Permits",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "shovels-addresses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shovels-contractors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shovels-geography-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shovels-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shovels-meta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shovels-permits-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
