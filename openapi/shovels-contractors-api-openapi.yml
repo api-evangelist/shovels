@@ -211,45 +211,107 @@ paths:
                 $ref: '#/components/schemas/ContractorMetrics'
 components:
   schemas:
-    Contractor:
+    Address:
       type: object
       properties:
-        id:
+        street_no:
           type: string
-          description: Unique contractor identifier
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
         name:
           type: string
-          description: Contractor or business name
-        license:
-          type: string
-          description: Contractor license number
-        classification:
-          type: string
-          description: Contractor classification type
-        phone:
-          type: string
-          description: Contact phone number
-        email:
-          type: string
-          format: email
-          description: Contact email address
-        website:
-          type: string
-          format: uri
-          description: Business website
-        address:
-          $ref: '#/components/schemas/Address'
-        inspection_pass_rate:
-          type: number
-          description: Ratio of passed inspections (0-1)
-        permit_count:
-          type: integer
-          description: Total number of associated permits
-        tags:
+          description: Formatted full address
+    ValidationError:
+      type: object
+      properties:
+        detail:
           type: array
           items:
-            type: string
-          description: Contractor specialty tags
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
+    ContractorListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contractor'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    EmployeeListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+    PermitListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permit'
+        size:
+          type: integer
+          description: Number of items returned
+        next_cursor:
+          type: string
+          nullable: true
+          description: Pagination cursor for next page
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
     Permit:
       type: object
       properties:
@@ -289,49 +351,21 @@ components:
         jurisdiction:
           type: string
           description: Jurisdiction that issued the permit
-    Address:
+    ContractorMetrics:
       type: object
       properties:
-        street_no:
+        contractor_id:
           type: string
-          description: Street number
-        street:
-          type: string
-          description: Street name
-        city:
-          type: string
-        county:
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-        jurisdiction:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        geo_id:
-          type: string
-          description: Unique geographic identifier for the address
-        name:
-          type: string
-          description: Formatted full address
-    TotalCount:
-      type: object
-      properties:
-        value:
+        permit_count:
           type: integer
-          description: Total count value (capped at 10,000)
-        relation:
-          type: string
-          enum:
-          - eq
-          - gte
-          description: Whether the value is exact (eq) or a lower bound (gte)
+        inspection_pass_rate:
+          type: number
+        avg_job_value:
+          type: number
+        total_job_value:
+          type: number
+        active_permits:
+          type: integer
     Employee:
       type: object
       properties:
@@ -348,79 +382,45 @@ components:
           format: email
         contractor_id:
           type: string
-    ContractorListResponse:
+    Contractor:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contractor'
-        size:
-          type: integer
-        next_cursor:
+        id:
           type: string
-          nullable: true
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
-    EmployeeListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        size:
-          type: integer
-        next_cursor:
+          description: Unique contractor identifier
+        name:
           type: string
-          nullable: true
-    ContractorMetrics:
-      type: object
-      properties:
-        contractor_id:
+          description: Contractor or business name
+        license:
           type: string
-        permit_count:
-          type: integer
+          description: Contractor license number
+        classification:
+          type: string
+          description: Contractor classification type
+        phone:
+          type: string
+          description: Contact phone number
+        email:
+          type: string
+          format: email
+          description: Contact email address
+        website:
+          type: string
+          format: uri
+          description: Business website
+        address:
+          $ref: '#/components/schemas/Address'
         inspection_pass_rate:
           type: number
-        avg_job_value:
-          type: number
-        total_job_value:
-          type: number
-        active_permits:
+          description: Ratio of passed inspections (0-1)
+        permit_count:
           type: integer
-    ValidationError:
-      type: object
-      properties:
-        detail:
+          description: Total number of associated permits
+        tags:
           type: array
           items:
-            type: object
-            properties:
-              loc:
-                type: array
-                items:
-                  type: string
-              msg:
-                type: string
-              type:
-                type: string
-    PermitListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Permit'
-        size:
-          type: integer
-          description: Number of items returned
-        next_cursor:
-          type: string
-          nullable: true
-          description: Pagination cursor for next page
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
+            type: string
+          description: Contractor specialty tags
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -39,7 +39,7 @@ tags:
   - Construction
   - Building Permits
   - Contractors
-  - Real-Estate
+  - Real Estate
   - Property Data
   - Market Intelligence
 tags_raw:
@@ -49,6 +49,7 @@ tags_raw:
   - Real Estate
   - Property Data
   - Market Intelligence
+  - Real-Estate
 url: https://raw.githubusercontent.com/api-evangelist/shovels/refs/heads/main/apis.yml
 created: '2026-05-02'
 modified: '2026-05-19'
