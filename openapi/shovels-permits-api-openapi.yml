@@ -131,69 +131,6 @@ paths:
                 $ref: '#/components/schemas/ValidationError'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        street_no:
-          type: string
-          description: Street number
-        street:
-          type: string
-          description: Street name
-        city:
-          type: string
-        county:
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-        jurisdiction:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        geo_id:
-          type: string
-          description: Unique geographic identifier for the address
-        name:
-          type: string
-          description: Formatted full address
-    ValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            properties:
-              loc:
-                type: array
-                items:
-                  type: string
-              msg:
-                type: string
-              type:
-                type: string
-    PermitListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Permit'
-        size:
-          type: integer
-          description: Number of items returned
-        next_cursor:
-          type: string
-          nullable: true
-          description: Pagination cursor for next page
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
     TotalCount:
       type: object
       properties:
@@ -245,6 +182,69 @@ components:
         jurisdiction:
           type: string
           description: Jurisdiction that issued the permit
+    ValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
+    PermitListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permit'
+        size:
+          type: integer
+          description: Number of items returned
+        next_cursor:
+          type: string
+          nullable: true
+          description: Pagination cursor for next page
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    Address:
+      type: object
+      properties:
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
