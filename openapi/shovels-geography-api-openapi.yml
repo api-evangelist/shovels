@@ -222,6 +222,18 @@ paths:
                 $ref: '#/components/schemas/GeoListResponse'
 components:
   schemas:
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
     GeoMetrics:
       type: object
       properties:
@@ -238,18 +250,6 @@ components:
         period:
           type: string
           format: date
-    TotalCount:
-      type: object
-      properties:
-        value:
-          type: integer
-          description: Total count value (capped at 10,000)
-        relation:
-          type: string
-          enum:
-          - eq
-          - gte
-          description: Whether the value is exact (eq) or a lower bound (gte)
     GeoListResponse:
       type: object
       properties:

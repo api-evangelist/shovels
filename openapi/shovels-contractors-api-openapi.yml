@@ -211,48 +211,22 @@ paths:
                 $ref: '#/components/schemas/ContractorMetrics'
 components:
   schemas:
-    TotalCount:
+    ValidationError:
       type: object
       properties:
-        value:
-          type: integer
-          description: Total count value (capped at 10,000)
-        relation:
-          type: string
-          enum:
-          - eq
-          - gte
-          description: Whether the value is exact (eq) or a lower bound (gte)
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        title:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
-        contractor_id:
-          type: string
-    ContractorListResponse:
-      type: object
-      properties:
-        items:
+        detail:
           type: array
           items:
-            $ref: '#/components/schemas/Contractor'
-        size:
-          type: integer
-        next_cursor:
-          type: string
-          nullable: true
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
     Permit:
       type: object
       properties:
@@ -292,6 +266,44 @@ components:
         jurisdiction:
           type: string
           description: Jurisdiction that issued the permit
+    EmployeeListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+    TotalCount:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
+          type: string
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
+    ContractorListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contractor'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
     PermitListResponse:
       type: object
       properties:
@@ -308,22 +320,53 @@ components:
           description: Pagination cursor for next page
         total_count:
           $ref: '#/components/schemas/TotalCount'
-    ValidationError:
+    Employee:
       type: object
       properties:
-        detail:
-          type: array
-          items:
-            type: object
-            properties:
-              loc:
-                type: array
-                items:
-                  type: string
-              msg:
-                type: string
-              type:
-                type: string
+        id:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+        contractor_id:
+          type: string
+    Address:
+      type: object
+      properties:
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
     Contractor:
       type: object
       properties:
@@ -378,49 +421,6 @@ components:
           type: number
         active_permits:
           type: integer
-    Address:
-      type: object
-      properties:
-        street_no:
-          type: string
-          description: Street number
-        street:
-          type: string
-          description: Street name
-        city:
-          type: string
-        county:
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-        jurisdiction:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        geo_id:
-          type: string
-          description: Unique geographic identifier for the address
-        name:
-          type: string
-          description: Formatted full address
-    EmployeeListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        size:
-          type: integer
-        next_cursor:
-          type: string
-          nullable: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
