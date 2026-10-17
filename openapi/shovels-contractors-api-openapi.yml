@@ -211,73 +211,6 @@ paths:
                 $ref: '#/components/schemas/ContractorMetrics'
 components:
   schemas:
-    ValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            properties:
-              loc:
-                type: array
-                items:
-                  type: string
-              msg:
-                type: string
-              type:
-                type: string
-    Permit:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique permit identifier
-        status:
-          type: string
-          description: Current permit status (issued, approved, completed, expired, cancelled)
-        issue_date:
-          type: string
-          format: date
-          description: Date the permit was issued
-        final_date:
-          type: string
-          format: date
-          description: Date the permit was finalized
-        description:
-          type: string
-          description: Description of the permitted work
-        job_value:
-          type: number
-          description: Estimated value of the permitted job in dollars
-        tags:
-          type: array
-          items:
-            type: string
-          description: Permit classification tags
-        property_type:
-          type: string
-          description: Type of property (residential, commercial, industrial)
-        address:
-          $ref: '#/components/schemas/Address'
-        contractor_id:
-          type: string
-          description: Associated contractor ID
-        jurisdiction:
-          type: string
-          description: Jurisdiction that issued the permit
-    EmployeeListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employee'
-        size:
-          type: integer
-        next_cursor:
-          type: string
-          nullable: true
     TotalCount:
       type: object
       properties:
@@ -290,52 +223,6 @@ components:
           - eq
           - gte
           description: Whether the value is exact (eq) or a lower bound (gte)
-    ContractorListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contractor'
-        size:
-          type: integer
-        next_cursor:
-          type: string
-          nullable: true
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
-    PermitListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Permit'
-        size:
-          type: integer
-          description: Number of items returned
-        next_cursor:
-          type: string
-          nullable: true
-          description: Pagination cursor for next page
-        total_count:
-          $ref: '#/components/schemas/TotalCount'
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        title:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-          format: email
-        contractor_id:
-          type: string
     Address:
       type: object
       properties:
@@ -406,6 +293,107 @@ components:
           items:
             type: string
           description: Contractor specialty tags
+    Permit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique permit identifier
+        status:
+          type: string
+          description: Current permit status (issued, approved, completed, expired, cancelled)
+        issue_date:
+          type: string
+          format: date
+          description: Date the permit was issued
+        final_date:
+          type: string
+          format: date
+          description: Date the permit was finalized
+        description:
+          type: string
+          description: Description of the permitted work
+        job_value:
+          type: number
+          description: Estimated value of the permitted job in dollars
+        tags:
+          type: array
+          items:
+            type: string
+          description: Permit classification tags
+        property_type:
+          type: string
+          description: Type of property (residential, commercial, industrial)
+        address:
+          $ref: '#/components/schemas/Address'
+        contractor_id:
+          type: string
+          description: Associated contractor ID
+        jurisdiction:
+          type: string
+          description: Jurisdiction that issued the permit
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+        contractor_id:
+          type: string
+    ValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
+    PermitListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permit'
+        size:
+          type: integer
+          description: Number of items returned
+        next_cursor:
+          type: string
+          nullable: true
+          description: Pagination cursor for next page
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
+    ContractorListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contractor'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
+        total_count:
+          $ref: '#/components/schemas/TotalCount'
     ContractorMetrics:
       type: object
       properties:
@@ -421,6 +409,18 @@ components:
           type: number
         active_permits:
           type: integer
+    EmployeeListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
+        size:
+          type: integer
+        next_cursor:
+          type: string
+          nullable: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

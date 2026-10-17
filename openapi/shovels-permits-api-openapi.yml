@@ -131,22 +131,37 @@ paths:
                 $ref: '#/components/schemas/ValidationError'
 components:
   schemas:
-    ValidationError:
+    Address:
       type: object
       properties:
-        detail:
-          type: array
-          items:
-            type: object
-            properties:
-              loc:
-                type: array
-                items:
-                  type: string
-              msg:
-                type: string
-              type:
-                type: string
+        street_no:
+          type: string
+          description: Street number
+        street:
+          type: string
+          description: Street name
+        city:
+          type: string
+        county:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        jurisdiction:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        geo_id:
+          type: string
+          description: Unique geographic identifier for the address
+        name:
+          type: string
+          description: Formatted full address
     Permit:
       type: object
       properties:
@@ -186,18 +201,22 @@ components:
         jurisdiction:
           type: string
           description: Jurisdiction that issued the permit
-    TotalCount:
+    ValidationError:
       type: object
       properties:
-        value:
-          type: integer
-          description: Total count value (capped at 10,000)
-        relation:
-          type: string
-          enum:
-          - eq
-          - gte
-          description: Whether the value is exact (eq) or a lower bound (gte)
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              loc:
+                type: array
+                items:
+                  type: string
+              msg:
+                type: string
+              type:
+                type: string
     PermitListResponse:
       type: object
       properties:
@@ -214,37 +233,18 @@ components:
           description: Pagination cursor for next page
         total_count:
           $ref: '#/components/schemas/TotalCount'
-    Address:
+    TotalCount:
       type: object
       properties:
-        street_no:
+        value:
+          type: integer
+          description: Total count value (capped at 10,000)
+        relation:
           type: string
-          description: Street number
-        street:
-          type: string
-          description: Street name
-        city:
-          type: string
-        county:
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-        jurisdiction:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        geo_id:
-          type: string
-          description: Unique geographic identifier for the address
-        name:
-          type: string
-          description: Formatted full address
+          enum:
+          - eq
+          - gte
+          description: Whether the value is exact (eq) or a lower bound (gte)
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
