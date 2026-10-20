@@ -1,0 +1,32 @@
+edges:
+- partner_name: Databricks Marketplace
+  partner: databricks
+  partner_match: aggregator
+  type: marketplace
+  marketplace: databricks-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://marketplace.databricks.com/provider/5d93b577-f1d9-45f7-abf5-6c9b4ce27748
+  category: data product listing
+  contract_reference:
+    register: Databricks Marketplace (marketplace.databricks.com/api/2.0/public-marketplace-providers + public-marketplace-listings)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Shovels
+    matched_domain: shovels.ai
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - U.S. Building Permits, Contractors & Residents Data
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
+generated: '2026-10-20'
+method: searched
+source:
+- https://marketplace.databricks.com/
+checked:
+- https://marketplace.databricks.com/
