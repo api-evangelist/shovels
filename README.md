@@ -1,4 +1,4 @@
-# Shovels (shovels)
+# Shovels
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,68 +66,166 @@
 
 Shovels is the intelligence layer for the built world, providing building permit data and contractor intelligence aggregated from 1,800+ jurisdictions across the United States. The platform offers 130M+ building permits, 2.3M+ contractor profiles, property details, resident information, and geographic market metrics. Shovels helps materials suppliers, construction tech companies, energy and climate firms, home services companies, real estate professionals, and telecommunications providers identify qualified contractors, understand work history, and power sales and marketing with rich permit data.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shovels/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shovels/refs/heads/main/apis.yml)
+**Areas:** Construction · Building Permits · Contractors · Real Estate · Property Data · Market Intelligence
 
-## Scope
+## Shovels on APIs.io
 
-- **Type:** Index
+Everything profiled for Shovels is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shovels/](https://apis.io/providers/shovels/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Construction
-- Building Permits
-- Contractors
-- Real Estate
-- Property Data
-- Market Intelligence
+- [Shovels Addresses API](https://apis.io/apis/shovels/shovels-addresses-api/) — The Addresses API from Shovels — 4 operation(s) for addresses.
+- [Shovels Contractors API](https://apis.io/apis/shovels/shovels-contractors-api/) — The Contractors API from Shovels — 5 operation(s) for contractors.
+- [Shovels Geography API](https://apis.io/apis/shovels/shovels-geography-api/) — The Geography API from Shovels — 7 operation(s) for geography.
+- [Shovels Lists API](https://apis.io/apis/shovels/shovels-lists-api/) — The Lists API from Shovels — 1 operation(s) for lists.
+- [Shovels Meta API](https://apis.io/apis/shovels/shovels-meta-api/) — The Meta API from Shovels — 2 operation(s) for meta.
+- [Shovels Permits API](https://apis.io/apis/shovels/shovels-permits-api/) — The Permits API from Shovels — 2 operation(s) for permits.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Shovels API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Shovels API v2 provides programmatic access to building permit intelligence and contractor data from 1,800+ US jurisdictions. Access 130M+ permits, 2.3M+ contractor profiles, geographic metrics, resident data, and market analytics. Authentication uses an X-API-Key header. Supports cursor-based pagination, credit tracking, and advanced filtering by geography, date range, tags, job value, property type, and contractor attributes. Data refreshes on the 1st and 15th of each month.
+- [Shovels Agentic Access](https://apis.io/agentic-access/shovels/shovels-agentic-access/)
 
-- **Human URL:** [https://www.shovels.ai/api](https://www.shovels.ai/api)
-- **Base URL:** `https://api.shovels.ai/v2`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Construction
-- Building Permits
-- Contractors
-- Property Data
-- Market Intelligence
-- Real Estate
+- [Shovels Contractor](https://apis.io/schemas/shovels/shovels-contractor/)
+- [Shovels Permit](https://apis.io/schemas/shovels/shovels-permit/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.shovels.ai)
-- [Getting Started](https://docs.shovels.ai/docs/shovels-api-introduction)
-- [Authentication](https://docs.shovels.ai/docs/shovels-api-introduction)
-- [Pricing](https://www.shovels.ai/pricing)
-- [Sign Up](https://app.shovels.ai)
-- [GitHub Organization](https://github.com/ShovelsAI)
-- [OpenAPI](openapi/shovels-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/shovels.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shovels.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/shovels-permit-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/shovels-contractor-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/shovels-permit-structure.json)
-- [JSON-LD](json-ld/shovels-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/shovels-rules.yml)
-- [Vocabulary](vocabulary/shovels-vocabulary.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Shovels Permit Structure](https://apis.io/json-structure/shovels/shovels-permit-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/shovels)
-- [L L Ms Txt](https://docs.shovels.ai/llms.txt)
+#### JSON-LD (1)
 
-## Maintainers
+Linked-data contexts for the provider's vocabulary.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Shovels Context](https://apis.io/jsonld/shovels/shovels-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Shovels Vocabulary](https://apis.io/vocabularies/shovels/shovels-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Shovels Search Contractors Example](https://apis.io/examples/shovels/shovels-search-contractors-example/)
+- [Shovels Search Permits Example](https://apis.io/examples/shovels/shovels-search-permits-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Shovels API](https://apis.io/collections/shovels/open-shovels/)
+- [Shovels Addresses API](https://apis.io/collections/shovels/open-shovels-addresses-api/)
+- [Shovels Addresses Contractors API](https://apis.io/collections/shovels/open-shovels-contractors-api/)
+- [Shovels Addresses Geography API](https://apis.io/collections/shovels/open-shovels-geography-api/)
+- [Shovels Addresses Lists API](https://apis.io/collections/shovels/open-shovels-lists-api/)
+- [Shovels Addresses Meta API](https://apis.io/collections/shovels/open-shovels-meta-api/)
+- [Shovels Addresses Permits API](https://apis.io/collections/shovels/open-shovels-permits-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Shovels — jsonschema rules](https://apis.io/rules/shovels/shovels-jsonschema-spectral-rules/)
+- [Shovels API Rules](https://apis.io/rules/shovels/shovels-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shovels Authentication](https://apis.io/security/shovels/shovels-authentication/)
+- [Shovels Domain Security](https://apis.io/security/shovels/shovels-domain-security/)
+- [Shovels Trust Center](https://apis.io/security/shovels/shovels-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shovels Plans Pricing](https://apis.io/plans/shovels/shovels-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shovels Rate Limits](https://apis.io/rate-limits/shovels/shovels-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Shovels Finops](https://apis.io/finops/shovels/shovels-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.shovels.ai/)
+- [Blog](https://www.shovels.ai/feeds/all.atom.xml)
+
+## API Evangelist rating
+
+**Kin Score 41.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 63.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 28.9 |
+
+**Agent readiness 30.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shovels/](https://apis.io/providers/shovels/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shovels: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shovels/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
